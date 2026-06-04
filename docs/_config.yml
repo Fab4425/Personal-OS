@@ -2,4 +2,16 @@ title: Personal OS
 description: Dokumentation — Triathlon, Produktivität, KI, Kalender
 theme: jekyll-theme-cayman
 markdown: GFM
-show_downloads: false
+show_downloads: true
+download_url: https://github.com/Fab4425/Personal-OS
+
+# GitHub Project Pages: https://fab4425.github.io/Personal-OS/
+url: https://fab4425.github.io
+baseurl: /Personal-OS
+
+plugins:
+  - jekyll-relative-links
+
+relative_links:
+  enabled: true
+  collections: true

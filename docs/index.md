@@ -7,16 +7,20 @@ title: Start
 
 Dein persönliches Betriebssystem für **Triathlon-Training**, **Schule**, **Projekte** und **KI-Coaching** — als Web-App und **Android-App** (PWA).
 
+**Live-App (Vercel):** nach Deploy unter deiner Vercel-URL  
+**Quellcode:** [github.com/Fab4425/Personal-OS](https://github.com/Fab4425/Personal-OS)
+
 ## Schnellnavigation
 
 | Thema | Beschreibung |
 |-------|----------------|
-| [Ersteinrichtung](setup) | Supabase, `.env.local`, Migrationen, lokaler Start |
-| [Android-App (PWA)](android-app) | Zum Startbildschirm hinzufügen, Push, Offline |
-| [Vercel Deploy](vercel-deploy) | GitHub → Vercel, Umgebungsvariablen, Cron |
-| [Integrationen](integrations) | Garmin, Google Kalender, Groq, optional Strava |
-| [Datenbank](database) | Migrationen in der richtigen Reihenfolge |
-| [FAQ](faq) | Häufige Fehler und Lösungen |
+| [Ersteinrichtung]({{ site.baseurl }}/setup.html) | Supabase, `.env.local`, Migrationen, lokaler Start |
+| [Android-App (PWA)]({{ site.baseurl }}/android-app.html) | Zum Startbildschirm hinzufügen, Push, Offline |
+| [Vercel Deploy]({{ site.baseurl }}/vercel-deploy.html) | GitHub → Vercel, Umgebungsvariablen, Cron |
+| [GitHub Pages]({{ site.baseurl }}/github-pages.html) | Diese Doku veröffentlichen |
+| [Integrationen]({{ site.baseurl }}/integrations.html) | Garmin, Google Kalender, Groq, optional Strava |
+| [Datenbank]({{ site.baseurl }}/database.html) | Migrationen in der richtigen Reihenfolge |
+| [FAQ]({{ site.baseurl }}/faq.html) | Häufige Fehler und Lösungen |
 
 ## Module der App
 
@@ -36,4 +40,4 @@ Dein persönliches Betriebssystem für **Triathlon-Training**, **Schule**, **Pro
 
 Next.js 14 · Supabase (Auth + Postgres) · Groq · Garmin Connect · Google Calendar · Vercel · PWA
 
-[Repository auf GitHub](https://github.com/) · [PLANNING.md](../PLANNING.md) im Repo
+[Repository](https://github.com/Fab4425/Personal-OS) · [PLANNING.md](https://github.com/Fab4425/Personal-OS/blob/main/PLANNING.md)

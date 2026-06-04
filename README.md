@@ -58,8 +58,8 @@
 ## Schnellstart (lokal)
 
 ```bash
-git clone https://github.com/DEIN-USER/personal-os.git
-cd personal-os
+git clone https://github.com/Fab4425/Personal-OS.git
+cd Personal-OS
 npm install
 npm run icons          # PWA-Icons für Android
 cp .env.example .env.local
@@ -99,7 +99,7 @@ Ausführlich: **[docs/android-app.md](docs/android-app.md)**
 git init
 git add .
 git commit -m "Personal OS"
-git remote add origin https://github.com/DEIN-USER/personal-os.git
+git remote add origin https://github.com/Fab4425/Personal-OS.git
 git push -u origin main
 ```
 
@@ -126,14 +126,15 @@ Im Ordner [`docs/`](docs/) liegt die vollständige Dokumentation (Deutsch):
 | [docs/database.md](docs/database.md) | Migrationen |
 | [docs/faq.md](docs/faq.md) | Fehlerbehebung |
 
-### GitHub Pages aktivieren
+### GitHub Pages (Dokumentation)
 
-1. Repository auf GitHub pushen.  
-2. **Settings → Pages**  
-3. Source: **Deploy from branch** → Branch `main` → Folder **`/docs`**  
-4. Speichern → nach ~1 Min erreichbar unter:  
+**URL:** [https://fab4425.github.io/Personal-OS/](https://fab4425.github.io/Personal-OS/)
 
-   `https://DEIN-USER.github.io/personal-os/`
+1. Code pushen (enthält `.github/workflows/deploy-docs.yml`).
+2. [Settings → Pages](https://github.com/Fab4425/Personal-OS/settings/pages) → **Source: GitHub Actions**.
+3. Unter [Actions](https://github.com/Fab4425/Personal-OS/actions) den Workflow „Deploy documentation to GitHub Pages“ abwarten (~1–3 Min).
+
+Details: [docs/github-pages.md](docs/github-pages.md)
 
 Die **App** läuft auf Vercel; GitHub Pages zeigt nur die **Dokumentation**.
 

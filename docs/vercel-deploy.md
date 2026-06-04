@@ -7,14 +7,10 @@ title: Vercel Deploy
 
 ## Übersicht
 
-```mermaid
-flowchart LR
-  A[GitHub Repo] --> B[Vercel Build]
-  B --> C[HTTPS URL]
-  C --> D[Android PWA]
-  B --> E[Cron Jobs]
-  E --> F[Garmin / Kalender / Review]
-```
+1. **GitHub** — Code in [Fab4425/Personal-OS](https://github.com/Fab4425/Personal-OS)
+2. **Vercel** — baut Next.js, liefert HTTPS-URL
+3. **Android** — PWA vom Startbildschirm (Chrome)
+4. **Cron** — täglich Garmin/Kalender, sonntags Wochen-Review (Hobby-Plan)
 
 ## 1. GitHub Repository
 
@@ -30,7 +26,7 @@ git commit -m "Initial commit: Personal OS"
 Auf GitHub ein **neues Repository** erstellen (ohne README, wenn du dieses behalten willst):
 
 ```bash
-git remote add origin https://github.com/DEIN-USER/personal-os.git
+git remote add origin https://github.com/Fab4425/Personal-OS.git
 git branch -M main
 git push -u origin main
 ```
@@ -125,11 +121,10 @@ Vercel baut automatisch neu (Production Branch = `main`).
 
 ## GitHub Pages (Dokumentation)
 
-Diese Doku unter `/docs` kann als Website dienen:
+Ausführlich: [GitHub Pages einrichten]({{ site.baseurl }}/github-pages.html)
 
-1. GitHub Repo → **Settings → Pages**
-2. **Source**: Deploy from branch
-3. Branch: `main`, Ordner: **`/docs`**
-4. Nach 1–2 Min: `https://DEIN-USER.github.io/personal-os/`
+Kurz: **Settings → Pages → Source: GitHub Actions** → Workflow `Deploy documentation to GitHub Pages`
+
+URL: [https://fab4425.github.io/Personal-OS/](https://fab4425.github.io/Personal-OS/)
 
 Die App selbst läuft auf **Vercel**, nicht auf GitHub Pages.

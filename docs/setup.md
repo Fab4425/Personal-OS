@@ -14,8 +14,8 @@ title: Ersteinrichtung
 ## 1. Repository klonen
 
 ```bash
-git clone https://github.com/DEIN-USER/personal-os.git
-cd personal-os
+git clone https://github.com/Fab4425/Personal-OS.git
+cd Personal-OS
 npm install
 npm run icons
 ```
