@@ -170,9 +170,12 @@ Spezifikation: [PLANNING.md](PLANNING.md)
 
 | Schedule | Endpoint | Aufgabe |
 |----------|----------|---------|
-| `*/15 * * * *` | `/api/calendar/sync` | Google Kalender |
-| `0 6 * * *` | `/api/cron/garmin-sync` | Garmin + Readiness |
+| `0 6 * * *` | `/api/cron/garmin-sync` | Garmin + Google Kalender + Readiness (täglich) |
 | `0 20 * * 0` | `/api/cron/weekly-review` | Wochen-Review (So 20:00 UTC) |
+
+Kalender jederzeit manuell: **Kalender** oder **Einstellungen** → Sync.
+
+**Vercel Hobby:** nur Cron-Jobs mit höchstens 1× pro Tag (kein 15-Min-Intervall). Dafür sind nur diese zwei Einträge in `vercel.json`.
 
 Benötigt `CRON_SECRET` in Vercel.
 

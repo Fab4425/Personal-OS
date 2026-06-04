@@ -87,13 +87,21 @@ In `vercel.json` bereits konfiguriert:
 
 | Pfad | Zeitplan | Aufgabe |
 |------|----------|---------|
-| `/api/calendar/sync` | alle 15 Min | Google Kalender |
-| `/api/cron/garmin-sync` | täglich 06:00 UTC | Garmin + Readiness |
+| `/api/cron/garmin-sync` | täglich 06:00 UTC | Garmin + **Google Kalender** + Readiness |
 | `/api/cron/weekly-review` | Sonntag 20:00 UTC | Wochen-Review + KI |
+
+**Manueller Kalender-Sync:** jederzeit in der App unter Kalender oder Einstellungen (Button „Sync“).
 
 Vercel sendet `Authorization: Bearer CRON_SECRET`. Variable **`CRON_SECRET`** muss in Vercel gesetzt sein.
 
-**Hinweis:** Cron-Jobs sind auf dem **Vercel Hobby-Plan** begrenzt; für persönliche Nutzung meist ausreichend.
+### Vercel Hobby vs. Pro
+
+| Plan | Cron-Regel |
+|------|------------|
+| **Hobby** | Jeder Job maximal **1× pro Tag**; dieses Projekt nutzt **2 Jobs** (täglich + sonntags) |
+| **Pro** | Beliebige Intervalle (z. B. Kalender alle 15 Min als eigener Cron) |
+
+Auf Hobby ist **kein** `*/15 * * * *` möglich — deshalb kein separater Kalender-Cron mehr in `vercel.json`.
 
 ## 5. Custom Domain (optional)
 

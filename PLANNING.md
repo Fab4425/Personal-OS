@@ -22,7 +22,7 @@ Vollständige Feature- und Schema-Beschreibung — siehe ursprüngliche Projekts
 - [x] Strava optional (503 wenn nicht konfiguriert — kein Premium nötig für App)
 - [x] Garmin Connect Sync (`garmin-connect` + `.env` Credentials)
 - [x] Google Calendar OAuth + bidirektionaler Sync
-- [x] Vercel Cron Jobs (Kalender 15 Min, Garmin täglich 06:00)
+- [x] Vercel Cron Jobs (täglich 06:00: Garmin + Kalender + Readiness; So 20:00 Review — Hobby-kompatibel)
 - [x] Readiness Score Berechnung
 
 ### Phase 3 – Module ✅
