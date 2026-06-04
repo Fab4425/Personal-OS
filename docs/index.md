@@ -21,6 +21,7 @@ Dein persönliches Betriebssystem für **Triathlon-Training**, **Schule**, **Pro
 | [Integrationen]({{ site.baseurl }}/integrations.html) | Garmin, Google Kalender, Groq, optional Strava |
 | [Datenbank]({{ site.baseurl }}/database.html) | Migrationen in der richtigen Reihenfolge |
 | [FAQ]({{ site.baseurl }}/faq.html) | Häufige Fehler und Lösungen |
+| [Claude Trainingsplan JSON]({{ site.baseurl }}/claude-training-plan-prompt.html) | Wochenplan per KI importieren |
 
 ## Module der App
 

@@ -103,6 +103,76 @@ export type Database = {
         };
         Update: Partial<Database["public"]["Tables"]["workouts"]["Insert"]>;
       };
+      training_plans: {
+        Relationships: [];
+        Row: {
+          id: string;
+          user_id: string;
+          name: string;
+          week_start: string;
+          week_end: string;
+          week_notes: string | null;
+          source_filename: string | null;
+          raw_json: Json;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          user_id: string;
+          name: string;
+          week_start: string;
+          week_end: string;
+          week_notes?: string | null;
+          source_filename?: string | null;
+          raw_json?: Json;
+          created_at?: string;
+        };
+        Update: Partial<
+          Database["public"]["Tables"]["training_plans"]["Insert"]
+        >;
+      };
+      planned_workouts: {
+        Relationships: [];
+        Row: {
+          id: string;
+          plan_id: string;
+          user_id: string;
+          date: string;
+          discipline: "swim" | "bike" | "run" | "gym" | "race";
+          title: string;
+          description: string | null;
+          duration_min: number | null;
+          distance_m: number | null;
+          target_tss: number | null;
+          intensity: string | null;
+          structure: Json;
+          sort_order: number;
+          status: "planned" | "completed" | "partial" | "skipped";
+          completed_workout_id: string | null;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          plan_id: string;
+          user_id: string;
+          date: string;
+          discipline: "swim" | "bike" | "run" | "gym" | "race";
+          title: string;
+          description?: string | null;
+          duration_min?: number | null;
+          distance_m?: number | null;
+          target_tss?: number | null;
+          intensity?: string | null;
+          structure?: Json;
+          sort_order?: number;
+          status?: "planned" | "completed" | "partial" | "skipped";
+          completed_workout_id?: string | null;
+          created_at?: string;
+        };
+        Update: Partial<
+          Database["public"]["Tables"]["planned_workouts"]["Insert"]
+        >;
+      };
       daily_health: {
         Relationships: [];
         Row: {

@@ -6,6 +6,9 @@ import { ATLCTLChart } from "@/components/training/ATLCTLChart";
 import { DisciplineTabs } from "@/components/training/DisciplineTabs";
 import { ReadinessAmpel } from "@/components/training/ReadinessAmpel";
 import { SleepTrendChart } from "@/components/training/SleepTrendChart";
+import { TrainingPlanImport } from "@/components/training/TrainingPlanImport";
+import { TrainingPlanWeek } from "@/components/training/TrainingPlanWeek";
+import { getCurrentTrainingPlan } from "@/lib/training/plan-server";
 import { computeLoadMetrics } from "@/lib/training/load-metrics";
 import {
   effectiveDurationSec,
@@ -34,6 +37,7 @@ export default async function TrainingPage() {
     { data: readiness },
     { data: workoutsRaw },
     { data: sleepData },
+    trainingPlan,
   ] = await Promise.all([
     supabase
       .from("readiness_scores")
@@ -55,6 +59,7 @@ export default async function TrainingPage() {
       .eq("user_id", user!.id)
       .gte("date", thirtyAgo)
       .order("date", { ascending: true }),
+    getCurrentTrainingPlan(supabase, user!.id),
   ]);
 
   const workouts = (workoutsRaw ?? []).map((w) => ({
@@ -104,9 +109,17 @@ export default async function TrainingPage() {
       userEmail={user?.email}
       moduleName="Training"
     >
-      <Button size="sm" variant="outline" asChild className="w-fit">
-        <Link href="/settings">Sync Garmin</Link>
-      </Button>
+      <div className="flex flex-wrap gap-2">
+        <Button size="sm" variant="outline" asChild>
+          <Link href="/settings">Sync Garmin</Link>
+        </Button>
+      </div>
+
+      <TrainingPlanImport />
+      <TrainingPlanWeek
+        plan={trainingPlan.plan}
+        workouts={trainingPlan.workouts}
+      />
 
       <div className="grid gap-4 lg:grid-cols-2">
         <ReadinessAmpel

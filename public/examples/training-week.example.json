@@ -1,0 +1,86 @@
+{
+  "version": 1,
+  "plan_name": "Build Woche 1",
+  "week_start": "2026-06-09",
+  "week_notes": "Fokus Bike-Volumen, ein langer Lauf am Wochenende.",
+  "workouts": [
+    {
+      "day": "monday",
+      "discipline": "swim",
+      "title": "Technik + Aerob",
+      "description": "Lockeres Schwimmen mit Technik-Schwerpunkten",
+      "duration_min": 45,
+      "distance_km": 2,
+      "target_tss": 35,
+      "intensity": "easy",
+      "structure": [
+        { "type": "warmup", "duration_min": 10 },
+        { "type": "drills", "duration_min": 15, "notes": "6×50 Technik" },
+        { "type": "main", "duration_min": 15, "zone": "Z2" },
+        { "type": "cooldown", "duration_min": 5 }
+      ]
+    },
+    {
+      "day": "tuesday",
+      "discipline": "bike",
+      "title": "Sweet Spot",
+      "description": "2×20 min @ 88–93% FTP",
+      "duration_min": 75,
+      "distance_km": 40,
+      "target_tss": 70,
+      "intensity": "moderate",
+      "structure": [
+        { "type": "warmup", "duration_min": 15 },
+        { "type": "interval", "duration_min": 20, "zone": "Sweet Spot" },
+        { "type": "recovery", "duration_min": 10 },
+        { "type": "interval", "duration_min": 20, "zone": "Sweet Spot" },
+        { "type": "cooldown", "duration_min": 10 }
+      ]
+    },
+    {
+      "day": "wednesday",
+      "discipline": "run",
+      "title": "Easy Run",
+      "duration_min": 40,
+      "distance_km": 7,
+      "target_tss": 30,
+      "intensity": "easy"
+    },
+    {
+      "day": "thursday",
+      "discipline": "gym",
+      "title": "Kraft & Stabi",
+      "duration_min": 35,
+      "target_tss": 15,
+      "intensity": "moderate"
+    },
+    {
+      "day": "friday",
+      "discipline": "bike",
+      "title": "Recovery Ride",
+      "duration_min": 50,
+      "distance_km": 25,
+      "target_tss": 25,
+      "intensity": "easy"
+    },
+    {
+      "day": "saturday",
+      "discipline": "run",
+      "title": "Long Run",
+      "description": "Langer Lauf Z2, gleichmäßig",
+      "duration_min": 90,
+      "distance_km": 16,
+      "target_tss": 75,
+      "intensity": "moderate"
+    },
+    {
+      "day": "sunday",
+      "discipline": "bike",
+      "title": "Long Ride",
+      "duration_min": 150,
+      "distance_km": 70,
+      "target_tss": 110,
+      "intensity": "moderate"
+    }
+  ]
+}

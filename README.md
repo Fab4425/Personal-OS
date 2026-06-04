@@ -28,7 +28,7 @@
 
 | Bereich | Funktionen |
 |---------|------------|
-| **Training** | Garmin-Sync, ATL/CTL/TSB, Readiness-Ampel, Schlaf/HRV, Disziplin-Tabs |
+| **Training** | Wochenplan (JSON/Claude), Garmin-Sync, ATL/CTL/TSB, Readiness, Disziplin-Tabs |
 | **Kalender** | FullCalendar, Drag & Drop, Google Calendar Sync |
 | **Heute** | Top-3-Ziele, Habits, Pomodoro, Wochen-Review (KI) |
 | **Akademie** | 12 Fächer, mündlich/schriftlich, Gesamtnote, Schnitt-Verlauf |
