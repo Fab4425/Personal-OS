@@ -1,0 +1,67 @@
+{
+  "version": 1,
+  "plan_name": "TSVE Bielefeld — Woche 6 Tapering",
+  "week_start": "2026-06-30",
+  "week_notes": "Fokus: Tapering — Volumen runter, Beine frisch. Rennen So 06.07. 🏁",
+  "workouts": [
+    {
+      "date": "2026-07-01",
+      "discipline": "swim",
+      "title": "Schwimmen locker",
+      "description": "1.000m locker + 4×50m Renntempo.",
+      "duration_min": 35,
+      "distance_km": 1,
+      "target_tss": 28,
+      "intensity": "easy"
+    },
+    {
+      "date": "2026-07-02",
+      "discipline": "bike",
+      "title": "Brick kurz — Rad",
+      "description": "30 min, 2×5 min Renntempo. Danach Lauf.",
+      "duration_min": 30,
+      "distance_km": 16,
+      "target_tss": 32,
+      "intensity": "moderate"
+    },
+    {
+      "date": "2026-07-02",
+      "discipline": "run",
+      "title": "Brick kurz — Lauf",
+      "description": "10 min direkt nach Rad. Klickpedale nochmal.",
+      "duration_min": 10,
+      "distance_km": 1.8,
+      "target_tss": 15,
+      "intensity": "moderate"
+    },
+    {
+      "date": "2026-07-04",
+      "discipline": "swim",
+      "title": "Schwimmen kurz",
+      "description": "600m locker schwimmen.",
+      "duration_min": 22,
+      "distance_km": 0.6,
+      "target_tss": 18,
+      "intensity": "easy"
+    },
+    {
+      "date": "2026-07-04",
+      "discipline": "run",
+      "title": "Laufen Strides",
+      "description": "15 min Joggen + 3×100m flotte Strides. Beine wach, nicht müde.",
+      "duration_min": 20,
+      "distance_km": 3,
+      "target_tss": 20,
+      "intensity": "moderate"
+    },
+    {
+      "date": "2026-07-06",
+      "discipline": "race",
+      "title": "🏁 RENNEN — TSVE Bielefeld",
+      "description": "Du hast 6 Wochen trainiert. Vertrau dem Plan.",
+      "duration_min": 90,
+      "target_tss": 100,
+      "intensity": "race"
+    }
+  ]
+}

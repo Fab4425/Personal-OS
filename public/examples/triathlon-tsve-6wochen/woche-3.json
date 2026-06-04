@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "plan_name": "TSVE Bielefeld — Woche 3 Peak-Volumen",
+  "week_start": "2026-06-09",
+  "week_notes": "Fokus: Höchstes Volumen, Rennsimulation Schwimmen. ~7–8h.",
+  "workouts": [
+    {
+      "date": "2026-06-09",
+      "discipline": "swim",
+      "title": "Schwimmen Rennsimulation",
+      "description": "500m so schnell wie möglich — Zeit messen. Referenzwert.",
+      "duration_min": 12,
+      "distance_km": 0.5,
+      "target_tss": 35,
+      "intensity": "hard"
+    },
+    {
+      "date": "2026-06-10",
+      "discipline": "run",
+      "title": "Laufen Intervalle",
+      "description": "5×1km bei ~4:00/km, 90s Pause. Danach 10 min locker.",
+      "duration_min": 45,
+      "distance_km": 8,
+      "target_tss": 55,
+      "intensity": "hard",
+      "structure": [
+        { "type": "warmup", "duration_min": 10 },
+        { "type": "interval", "duration_min": 25, "zone": "10k", "notes": "5×1km" },
+        { "type": "cooldown", "duration_min": 10 }
+      ]
+    },
+    {
+      "date": "2026-06-11",
+      "discipline": "bike",
+      "title": "Rad Ausdauer",
+      "description": "75–90 min locker bis moderat. Tritt-Kadenz 85–95 U/min.",
+      "duration_min": 82,
+      "distance_km": 45,
+      "target_tss": 65,
+      "intensity": "moderate"
+    },
+    {
+      "date": "2026-06-12",
+      "discipline": "swim",
+      "title": "Schwimmen Technik",
+      "description": "1.200m Technikfokus.",
+      "duration_min": 38,
+      "distance_km": 1.2,
+      "target_tss": 35,
+      "intensity": "easy"
+    },
+    {
+      "date": "2026-06-12",
+      "discipline": "gym",
+      "title": "Kraft Rumpf leicht",
+      "description": "Nur Rumpf und Schultern, leicht.",
+      "duration_min": 20,
+      "target_tss": 10,
+      "intensity": "easy"
+    },
+    {
+      "date": "2026-06-13",
+      "discipline": "run",
+      "title": "Laufen Z2",
+      "description": "45 min Zone 2. Erholung nach Intervallen.",
+      "duration_min": 45,
+      "distance_km": 9,
+      "target_tss": 38,
+      "intensity": "easy"
+    },
+    {
+      "date": "2026-06-14",
+      "discipline": "bike",
+      "title": "Brick — Rad",
+      "description": "55 min, 20km Renntempo testen. Danach Lauf.",
+      "duration_min": 55,
+      "distance_km": 30,
+      "target_tss": 58,
+      "intensity": "moderate"
+    },
+    {
+      "date": "2026-06-14",
+      "discipline": "run",
+      "title": "Brick — Lauf",
+      "description": "20 min, letzte 10 min bei Renntempo. T1 üben.",
+      "duration_min": 20,
+      "distance_km": 3.5,
+      "target_tss": 28,
+      "intensity": "moderate"
+    },
+    {
+      "date": "2026-06-15",
+      "discipline": "swim",
+      "title": "Schwimmen locker",
+      "description": "800m sehr locker als aktive Erholung.",
+      "duration_min": 28,
+      "distance_km": 0.8,
+      "target_tss": 18,
+      "intensity": "easy"
+    }
+  ]
+}

@@ -6,8 +6,8 @@ import { ATLCTLChart } from "@/components/training/ATLCTLChart";
 import { DisciplineTabs } from "@/components/training/DisciplineTabs";
 import { ReadinessAmpel } from "@/components/training/ReadinessAmpel";
 import { SleepTrendChart } from "@/components/training/SleepTrendChart";
-import { TrainingPlanImport } from "@/components/training/TrainingPlanImport";
-import { TrainingPlanWeek } from "@/components/training/TrainingPlanWeek";
+import { Suspense } from "react";
+import { TrainingPlanBoard } from "@/components/training/TrainingPlanBoard";
 import { getCurrentTrainingPlan } from "@/lib/training/plan-server";
 import { computeLoadMetrics } from "@/lib/training/load-metrics";
 import {
@@ -115,11 +115,16 @@ export default async function TrainingPage() {
         </Button>
       </div>
 
-      <TrainingPlanImport />
-      <TrainingPlanWeek
-        plan={trainingPlan.plan}
-        workouts={trainingPlan.workouts}
-      />
+      <Suspense
+        fallback={
+          <p className="text-sm text-muted-foreground">Lade Trainingsplan…</p>
+        }
+      >
+        <TrainingPlanBoard
+          initialPlan={trainingPlan.plan}
+          initialWorkouts={trainingPlan.workouts}
+        />
+      </Suspense>
 
       <div className="grid gap-4 lg:grid-cols-2">
         <ReadinessAmpel

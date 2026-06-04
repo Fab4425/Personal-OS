@@ -1,0 +1,86 @@
+{
+  "version": 1,
+  "plan_name": "TSVE Bielefeld — Woche 1 Grundlage",
+  "week_start": "2026-05-26",
+  "week_notes": "Fokus: Grundlage aufbauen, Rad kennenlernen, Klickpedale üben. ~5–6h gesamt.",
+  "workouts": [
+    {
+      "date": "2026-05-26",
+      "discipline": "swim",
+      "title": "Schwimmen Technik",
+      "description": "1.000m locker. 4×50m mit Fokus auf Zugzyklus. Kein Renntempo.",
+      "duration_min": 35,
+      "distance_km": 1,
+      "target_tss": 30,
+      "intensity": "easy"
+    },
+    {
+      "date": "2026-05-27",
+      "discipline": "bike",
+      "title": "Rad Eingewöhnung",
+      "description": "Locker, flache Strecke. Klickpedale 20× ein/ausklicken üben. Sitzposition prüfen.",
+      "duration_min": 52,
+      "distance_km": 22,
+      "target_tss": 35,
+      "intensity": "easy"
+    },
+    {
+      "date": "2026-05-28",
+      "discipline": "run",
+      "title": "Laufen Z2",
+      "description": "Zone 2, easy pace ~5:00/km.",
+      "duration_min": 30,
+      "distance_km": 6,
+      "target_tss": 28,
+      "intensity": "easy"
+    },
+    {
+      "date": "2026-05-28",
+      "discipline": "gym",
+      "title": "Kraft Rumpf",
+      "description": "Plank 3×45s, Ausfallschritte 3×12, Liegestütze 3×15.",
+      "duration_min": 20,
+      "target_tss": 12,
+      "intensity": "moderate"
+    },
+    {
+      "date": "2026-05-30",
+      "discipline": "swim",
+      "title": "Schwimmen Ausdauer",
+      "description": "1.200m mit 4×100m bei ~1:50/100m.",
+      "duration_min": 40,
+      "distance_km": 1.2,
+      "target_tss": 38,
+      "intensity": "moderate"
+    },
+    {
+      "date": "2026-05-30",
+      "discipline": "gym",
+      "title": "Kraft Oberkörper",
+      "description": "Klimmzüge 3×max, Rudern 3×12, Schulterdrücken 3×12.",
+      "duration_min": 25,
+      "target_tss": 15,
+      "intensity": "moderate"
+    },
+    {
+      "date": "2026-05-31",
+      "discipline": "bike",
+      "title": "Rad Ausdauer",
+      "description": "60–75 min, davon 20 min im Renntempo-Gefühl (~33 km/h). Strecke ähnlich Rennstrecke wenn möglich.",
+      "duration_min": 68,
+      "distance_km": 38,
+      "target_tss": 55,
+      "intensity": "moderate"
+    },
+    {
+      "date": "2026-06-01",
+      "discipline": "run",
+      "title": "Langer Lauf Z2",
+      "description": "Zone 2. Kein Druck, Ausdauerbasis aufbauen.",
+      "duration_min": 42,
+      "distance_km": 8.5,
+      "target_tss": 40,
+      "intensity": "easy"
+    }
+  ]
+}

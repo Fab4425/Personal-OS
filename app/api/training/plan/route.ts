@@ -16,6 +16,19 @@ export async function GET(request: Request) {
 
   const { searchParams } = new URL(request.url);
   const weekStart = searchParams.get("week_start");
+  const listAll = searchParams.get("list") === "all";
+
+  if (listAll) {
+    const { data: plans, error } = await supabase
+      .from("training_plans")
+      .select("id, name, week_start, week_end, week_notes")
+      .eq("user_id", user.id)
+      .order("week_start", { ascending: true });
+    if (error) {
+      return NextResponse.json({ error: error.message }, { status: 500 });
+    }
+    return NextResponse.json({ plans: plans ?? [] });
+  }
 
   let planQuery = supabase
     .from("training_plans")

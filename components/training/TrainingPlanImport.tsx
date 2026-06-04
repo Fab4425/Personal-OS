@@ -36,13 +36,46 @@ Antworte NUR mit gültigem JSON (kein Markdown).
 
 Meine Woche: [Beschreibe Ziel, Stunden, Schwerpunkte, Ruhetage]`;
 
-export function TrainingPlanImport() {
+export function TrainingPlanImport({
+  onImported,
+}: {
+  onImported?: () => void;
+} = {}) {
   const router = useRouter();
   const inputRef = useRef<HTMLInputElement>(null);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
+
+  async function importAllTsve() {
+    setLoading(true);
+    setError(null);
+    setMessage(null);
+
+    const res = await fetch("/api/training/plan/import-all", {
+      method: "POST",
+    });
+    const data = (await res.json()) as {
+      error?: string;
+      weeks?: number;
+      totalWorkouts?: number;
+      plans?: { planName: string; weekStart: string }[];
+    };
+
+    setLoading(false);
+
+    if (!res.ok) {
+      setError(data.error ?? "Import fehlgeschlagen");
+      return;
+    }
+
+    setMessage(
+      `TSVE 6-Wochen-Plan importiert: ${data.weeks} Wochen, ${data.totalWorkouts} Einheiten gesamt.`
+    );
+    onImported?.();
+    router.refresh();
+  }
 
   async function uploadFile(file: File) {
     setLoading(true);
@@ -74,6 +107,7 @@ export function TrainingPlanImport() {
     setMessage(
       `„${data.planName}" importiert: ${data.workoutsImported} Einheiten (Woche ab ${data.weekStart}).`
     );
+    onImported?.();
     router.refresh();
   }
 
@@ -119,10 +153,18 @@ export function TrainingPlanImport() {
           <Button
             type="button"
             disabled={loading}
+            onClick={() => void importAllTsve()}
+          >
+            {loading ? "Import…" : "TSVE 6 Wochen importieren"}
+          </Button>
+          <Button
+            type="button"
+            variant="secondary"
+            disabled={loading}
             onClick={() => inputRef.current?.click()}
           >
             <Upload className="mr-2 h-4 w-4" />
-            {loading ? "Import…" : "JSON-Datei hochladen"}
+            Einzelne JSON-Datei
           </Button>
           <Button type="button" variant="outline" size="sm" onClick={copyPrompt}>
             {copied ? (

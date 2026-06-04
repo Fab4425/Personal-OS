@@ -1,0 +1,87 @@
+{
+  "version": 1,
+  "plan_name": "TSVE Bielefeld — Woche 4 Erholung",
+  "week_start": "2026-06-16",
+  "week_notes": "Fokus: Erholungswoche — Volumen −30%, Qualität bleibt. ~4–5h.",
+  "workouts": [
+    {
+      "date": "2026-06-17",
+      "discipline": "swim",
+      "title": "Schwimmen locker",
+      "description": "1.000m locker, Technikgefühl. Kein Intervall.",
+      "duration_min": 32,
+      "distance_km": 1,
+      "target_tss": 25,
+      "intensity": "easy"
+    },
+    {
+      "date": "2026-06-18",
+      "discipline": "run",
+      "title": "Laufen moderat",
+      "description": "30 min Zone 2–3.",
+      "duration_min": 30,
+      "distance_km": 6,
+      "target_tss": 28,
+      "intensity": "easy"
+    },
+    {
+      "date": "2026-06-18",
+      "discipline": "gym",
+      "title": "Kraft leicht",
+      "description": "20 min Kraft: nur Körpergewicht, niedriges Volumen.",
+      "duration_min": 20,
+      "target_tss": 10,
+      "intensity": "easy"
+    },
+    {
+      "date": "2026-06-19",
+      "discipline": "bike",
+      "title": "Rad locker",
+      "description": "45 min locker. Kein Renntempo.",
+      "duration_min": 45,
+      "distance_km": 22,
+      "target_tss": 30,
+      "intensity": "easy"
+    },
+    {
+      "date": "2026-06-20",
+      "discipline": "swim",
+      "title": "Schwimmen kurz",
+      "description": "800m, 4×50m bei Renntempo als Einschub.",
+      "duration_min": 30,
+      "distance_km": 0.8,
+      "target_tss": 28,
+      "intensity": "moderate"
+    },
+    {
+      "date": "2026-06-21",
+      "discipline": "bike",
+      "title": "Brick kurz — Rad",
+      "description": "30 min locker, danach Lauf.",
+      "duration_min": 30,
+      "distance_km": 16,
+      "target_tss": 25,
+      "intensity": "easy"
+    },
+    {
+      "date": "2026-06-21",
+      "discipline": "run",
+      "title": "Brick kurz — Lauf",
+      "description": "15 min, kein Tempo — Gefühl auffrischen.",
+      "duration_min": 15,
+      "distance_km": 2.5,
+      "target_tss": 15,
+      "intensity": "easy"
+    },
+    {
+      "date": "2026-06-22",
+      "discipline": "run",
+      "title": "Laufen locker",
+      "description": "30 min Zone 2.",
+      "duration_min": 30,
+      "distance_km": 6,
+      "target_tss": 25,
+      "intensity": "easy"
+    }
+  ]
+}

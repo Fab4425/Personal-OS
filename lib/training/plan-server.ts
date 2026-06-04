@@ -22,7 +22,9 @@ export async function getCurrentTrainingPlan(
     .eq("week_start", currentWeekStart)
     .maybeSingle();
 
-  if (!plan) {
+  let activePlan = plan;
+
+  if (!activePlan) {
     const { data: latest } = await supabase
       .from("training_plans")
       .select("id, name, week_start, week_end, week_notes")
@@ -30,37 +32,24 @@ export async function getCurrentTrainingPlan(
       .order("week_start", { ascending: false })
       .limit(1)
       .maybeSingle();
-
-    if (!latest) {
-      return { plan: null, workouts: [] };
-    }
-
-    await syncPlannedWorkoutStatus(supabase, userId, latest.id);
-
-    const { data: workouts } = await supabase
-      .from("planned_workouts")
-      .select("*")
-      .eq("plan_id", latest.id)
-      .order("date")
-      .order("sort_order");
-
-    return {
-      plan: latest as TrainingPlanView,
-      workouts: (workouts ?? []) as PlannedWorkoutView[],
-    };
+    activePlan = latest;
   }
 
-  await syncPlannedWorkoutStatus(supabase, userId, plan.id);
+  if (!activePlan) {
+    return { plan: null, workouts: [] };
+  }
+
+  await syncPlannedWorkoutStatus(supabase, userId, activePlan.id);
 
   const { data: workouts } = await supabase
     .from("planned_workouts")
     .select("*")
-    .eq("plan_id", plan.id)
+    .eq("plan_id", activePlan.id)
     .order("date")
     .order("sort_order");
 
   return {
-    plan: plan as TrainingPlanView,
+    plan: activePlan as TrainingPlanView,
     workouts: (workouts ?? []) as PlannedWorkoutView[],
   };
 }
