@@ -1,5 +1,14 @@
 import { subDays, format } from "date-fns";
 import type { SupabaseClient } from "@supabase/supabase-js";
+import { getGarminClient } from "@/lib/garmin/client";
+import { mapGarminActivityToDiscipline } from "@/lib/garmin/discipline";
+import { parseGarminActivityDate } from "@/lib/garmin/activity-date";
+import { expandMultisportActivities } from "@/lib/garmin/multisport";
+import { upsertGarminWorkout } from "@/lib/garmin/workout-store";
+import { garminDurationToSeconds } from "@/lib/training/normalize";
+import { syncAllPlanStatusesForUser } from "@/lib/training/plan-match";
+import { isGarminConfigured } from "@/lib/integrations/config";
+
 interface GarminActivity {
   activityId: number;
   activityName: string;
@@ -12,20 +21,16 @@ interface GarminActivity {
   maxHR?: number;
   calories?: number;
   avgPower?: number;
+  parent?: boolean;
+  parentId?: number | null;
+  movingDuration?: number;
 }
-import { getGarminClient } from "@/lib/garmin/client";
-import { mapGarminActivityToDiscipline } from "@/lib/garmin/discipline";
-import { garminDurationToSeconds } from "@/lib/training/normalize";
-import { isGarminConfigured } from "@/lib/integrations/config";
 
 export interface GarminSyncResult {
   workoutsUpserted: number;
   healthDaysUpserted: number;
   activitiesFetched: number;
-}
-
-function activityDate(activity: GarminActivity): string {
-  return activity.startTimeLocal.split("T")[0] ?? format(new Date(), "yyyy-MM-dd");
+  workoutErrors: string[];
 }
 
 function mapSleepQuality(overallScore: number | undefined): number | null {
@@ -35,6 +40,40 @@ function mapSleepQuality(overallScore: number | undefined): number | null {
   if (overallScore >= 40) return 3;
   if (overallScore >= 20) return 2;
   return 1;
+}
+
+function buildWorkoutPayload(
+  userId: string,
+  activity: GarminActivity
+): Parameters<typeof upsertGarminWorkout>[1] {
+  const dateStr = parseGarminActivityDate(activity.startTimeLocal);
+  const discipline = mapGarminActivityToDiscipline(
+    activity.activityType?.typeKey ?? "other",
+    activity.activityName ?? ""
+  );
+  const durationSec = garminDurationToSeconds(
+    activity.duration,
+    activity.elapsedDuration,
+    activity.movingDuration
+  );
+  const distanceM =
+    activity.distance != null ? Math.round(activity.distance) : null;
+
+  return {
+    user_id: userId,
+    source: "garmin",
+    external_id: String(activity.activityId),
+    discipline,
+    date: dateStr,
+    duration_sec: durationSec > 0 ? durationSec : null,
+    distance_m: distanceM,
+    avg_hr: activity.averageHR ? Math.round(activity.averageHR) : null,
+    max_hr: activity.maxHR ? Math.round(activity.maxHR) : null,
+    calories: activity.calories ? Math.round(activity.calories) : null,
+    normalized_power:
+      typeof activity.avgPower === "number" ? activity.avgPower : null,
+    raw_data: activity as unknown as Record<string, unknown>,
+  };
 }
 
 export async function syncGarminForUser(
@@ -48,51 +87,30 @@ export async function syncGarminForUser(
 
   const client = await getGarminClient();
   const limit = 100;
-  const activities = await client.getActivities(0, limit);
+  const rawActivities = (await client.getActivities(
+    0,
+    limit
+  )) as GarminActivity[];
+  const activities = await expandMultisportActivities(client, rawActivities);
 
   let workoutsUpserted = 0;
+  const workoutErrors: string[] = [];
   const cutoff = subDays(new Date(), daysBack);
 
-  for (const activity of activities as GarminActivity[]) {
-    const dateStr = activityDate(activity);
+  for (const activity of activities) {
+    const dateStr = parseGarminActivityDate(activity.startTimeLocal);
     if (new Date(dateStr) < cutoff) continue;
 
-    const externalId = String(activity.activityId);
-    const discipline = mapGarminActivityToDiscipline(
-      activity.activityType?.typeKey ?? "other",
-      activity.activityName ?? ""
-    );
+    const payload = buildWorkoutPayload(userId, activity);
+    const { ok, error } = await upsertGarminWorkout(supabase, payload);
 
-    const durationSec = garminDurationToSeconds(
-      activity.duration,
-      activity.elapsedDuration,
-      (activity as GarminActivity & { movingDuration?: number }).movingDuration
-    );
-    const distanceM =
-      activity.distance != null ? Math.round(activity.distance) : null;
-
-    const { error } = await supabase.from("workouts").upsert(
-      {
-        user_id: userId,
-        source: "garmin",
-        external_id: externalId,
-        discipline,
-        date: dateStr,
-        duration_sec: durationSec > 0 ? durationSec : null,
-        distance_m: distanceM,
-        avg_hr: activity.averageHR ? Math.round(activity.averageHR) : null,
-        max_hr: activity.maxHR ? Math.round(activity.maxHR) : null,
-        calories: activity.calories ? Math.round(activity.calories) : null,
-        normalized_power:
-          typeof activity.avgPower === "number"
-            ? activity.avgPower
-            : null,
-        raw_data: activity as unknown as Record<string, unknown>,
-      },
-      { onConflict: "user_id,source,external_id" }
-    );
-
-    if (!error) workoutsUpserted += 1;
+    if (ok) {
+      workoutsUpserted += 1;
+    } else if (error) {
+      workoutErrors.push(
+        `${activity.activityName ?? activity.activityId}: ${error}`
+      );
+    }
   }
 
   let healthDaysUpserted = 0;
@@ -150,9 +168,12 @@ export async function syncGarminForUser(
     { onConflict: "user_id,provider" }
   );
 
+  await syncAllPlanStatusesForUser(supabase, userId);
+
   return {
     workoutsUpserted,
     healthDaysUpserted,
-    activitiesFetched: activities.length,
+    activitiesFetched: rawActivities.length,
+    workoutErrors: workoutErrors.slice(0, 5),
   };
 }

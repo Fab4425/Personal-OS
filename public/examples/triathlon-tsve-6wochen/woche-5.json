@@ -1,87 +1,134 @@
 {
   "version": 1,
-  "plan_name": "TSVE Bielefeld — Woche 5 Rennschärfe",
-  "week_start": "2026-06-23",
-  "week_notes": "Fokus: Rennen schärfen — Tempo, Übergänge, volle Rennsimulation Sa. ~6–7h.",
+  "plan_name": "Woche 5 — Rennen schärfen",
+  "week_start": "2026-07-07",
+  "focus": "Rennen schärfen — Tempo, Übergänge, volle Rennsimulation",
+  "volume_total": "~6–7h",
   "workouts": [
     {
-      "date": "2026-06-23",
+      "day": "monday",
       "discipline": "swim",
-      "title": "Schwimmen Intervalle",
-      "description": "1.600m: 8×100m bei 1:40–1:45/100m, 20s Pause.",
+      "title": "Intervalle",
       "duration_min": 45,
-      "distance_km": 1.6,
-      "target_tss": 48,
-      "intensity": "hard"
-    },
-    {
-      "date": "2026-06-24",
-      "discipline": "run",
-      "title": "Laufen Tempo",
-      "description": "3km Warm-up, 5km Renntempo (~4:15/km), 1km Cool-down.",
-      "duration_min": 50,
-      "distance_km": 9,
-      "target_tss": 55,
-      "intensity": "hard"
-    },
-    {
-      "date": "2026-06-25",
-      "discipline": "bike",
-      "title": "Rad Renntempo",
-      "description": "45 min, 2×10 min bei Renntempo.",
-      "duration_min": 45,
-      "distance_km": 24,
       "target_tss": 50,
-      "intensity": "moderate"
+      "structure": [
+        {
+          "type": "interval",
+          "reps": 8,
+          "rep_distance_m": 100,
+          "pace_per_100m": "1:40–1:45",
+          "rest_s": 20,
+          "zone": "Z4"
+        }
+      ],
+      "notes": "1.600m gesamt. Schnellste Woche im Becken."
     },
     {
-      "date": "2026-06-25",
-      "discipline": "gym",
-      "title": "Kraft Rumpf leicht",
-      "description": "Nur Rumpf + Schultern, 20 min.",
-      "duration_min": 20,
-      "target_tss": 10,
-      "intensity": "easy"
-    },
-    {
-      "date": "2026-06-26",
+      "day": "tuesday",
       "discipline": "run",
-      "title": "Laufen Z2",
-      "description": "35 min Zone 2. Aktive Erholung.",
-      "duration_min": 35,
-      "distance_km": 7,
-      "target_tss": 30,
-      "intensity": "easy"
+      "title": "5km Tempo",
+      "duration_min": 56,
+      "target_tss": 68,
+      "structure": [
+        {
+          "type": "warmup",
+          "distance_km": 3,
+          "zone": "Z2"
+        },
+        {
+          "type": "time_trial",
+          "distance_km": 5,
+          "pace_per_km": "4:15",
+          "zone": "Z4–Z5",
+          "description": "Zeit messen"
+        },
+        {
+          "type": "cooldown",
+          "distance_km": 1,
+          "zone": "Z1"
+        }
+      ]
     },
     {
-      "date": "2026-06-28",
-      "discipline": "swim",
-      "title": "Rennsimulation — Schwimmen",
-      "description": "500m Schwimmen Renntempo. Teil der vollen Simulation.",
-      "duration_min": 12,
-      "distance_km": 0.5,
-      "target_tss": 40,
-      "intensity": "race"
-    },
-    {
-      "date": "2026-06-28",
+      "day": "wednesday",
       "discipline": "bike",
-      "title": "Rennsimulation — Rad 20km",
-      "description": "20km Rad nach T1. Zeiten stoppen.",
-      "duration_min": 38,
-      "distance_km": 20,
+      "title": "Renntempo + Leichte Kraft",
+      "duration_min": 45,
       "target_tss": 55,
-      "intensity": "race"
+      "structure": [
+        {
+          "type": "interval",
+          "reps": 2,
+          "rep_duration_min": 10,
+          "zone": "Z4",
+          "description": "Renntempo"
+        }
+      ],
+      "gym": {
+        "duration_min": 20,
+        "focus": "Rumpf + Schultern"
+      }
     },
     {
-      "date": "2026-06-28",
+      "day": "thursday",
       "discipline": "run",
-      "title": "Rennsimulation — Lauf 5km",
-      "description": "5km Laufen nach T2. Test-Rennen.",
-      "duration_min": 25,
-      "distance_km": 5,
-      "target_tss": 45,
-      "intensity": "race"
+      "title": "Zone 2 Erholung",
+      "duration_min": 35,
+      "target_tss": 28,
+      "structure": [
+        {
+          "type": "steady",
+          "duration_min": 35,
+          "zone": "Z2"
+        }
+      ],
+      "notes": "Aktive Erholung."
+    },
+    {
+      "day": "friday",
+      "discipline": "rest",
+      "title": "Ruhe",
+      "notes": "Vorbereitung auf Rennsimulation Sa."
+    },
+    {
+      "day": "saturday",
+      "discipline": "brick",
+      "title": "Volle Rennsimulation",
+      "duration_min": 105,
+      "target_tss": 130,
+      "structure": [
+        {
+          "type": "swim",
+          "distance_m": 500,
+          "zone": "Z4–Z5",
+          "description": "Renntempo"
+        },
+        {
+          "type": "transition",
+          "description": "T1 mit echter Ausrüstung"
+        },
+        {
+          "type": "bike",
+          "distance_km": 20,
+          "zone": "Z4"
+        },
+        {
+          "type": "transition",
+          "description": "T2"
+        },
+        {
+          "type": "run",
+          "distance_km": 5,
+          "zone": "Z3–Z4"
+        }
+      ],
+      "notes": "Zeiten stoppen. Das ist dein Test-Rennen."
+    },
+    {
+      "day": "sunday",
+      "discipline": "rest",
+      "title": "Ruhe",
+      "notes": "Nach der Simulation verdient. Beine hochlegen."
     }
   ]
 }

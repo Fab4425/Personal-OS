@@ -1,87 +1,121 @@
 {
   "version": 1,
-  "plan_name": "TSVE Bielefeld — Woche 4 Erholung",
-  "week_start": "2026-06-16",
-  "week_notes": "Fokus: Erholungswoche — Volumen −30%, Qualität bleibt. ~4–5h.",
+  "plan_name": "Woche 4 — Erholung (Deload)",
+  "week_start": "2026-06-30",
+  "focus": "Erholungswoche — Volumen −30%, Qualität bleibt. Körper adaptiert jetzt.",
+  "volume_total": "~4–5h",
   "workouts": [
     {
-      "date": "2026-06-17",
+      "day": "monday",
+      "discipline": "rest",
+      "title": "Deload Ruhe",
+      "notes": "Komplett frei. Woche 3 war hart."
+    },
+    {
+      "day": "tuesday",
       "discipline": "swim",
-      "title": "Schwimmen locker",
-      "description": "1.000m locker, Technikgefühl. Kein Intervall.",
-      "duration_min": 32,
-      "distance_km": 1,
-      "target_tss": 25,
-      "intensity": "easy"
-    },
-    {
-      "date": "2026-06-18",
-      "discipline": "run",
-      "title": "Laufen moderat",
-      "description": "30 min Zone 2–3.",
+      "title": "Locker Technik",
       "duration_min": 30,
-      "distance_km": 6,
-      "target_tss": 28,
-      "intensity": "easy"
+      "target_tss": 18,
+      "structure": [
+        {
+          "type": "steady",
+          "distance_m": 1000,
+          "zone": "Z1",
+          "focus": "Technik auffrischen"
+        }
+      ],
+      "notes": "Kein Intervall."
     },
     {
-      "date": "2026-06-18",
-      "discipline": "gym",
-      "title": "Kraft leicht",
-      "description": "20 min Kraft: nur Körpergewicht, niedriges Volumen.",
-      "duration_min": 20,
-      "target_tss": 10,
-      "intensity": "easy"
-    },
-    {
-      "date": "2026-06-19",
-      "discipline": "bike",
-      "title": "Rad locker",
-      "description": "45 min locker. Kein Renntempo.",
-      "duration_min": 45,
-      "distance_km": 22,
+      "day": "wednesday",
+      "discipline": "run",
+      "title": "Moderat + Leichte Kraft",
+      "duration_min": 30,
       "target_tss": 30,
-      "intensity": "easy"
+      "structure": [
+        {
+          "type": "steady",
+          "duration_min": 30,
+          "zone": "Z2–Z3"
+        }
+      ],
+      "gym": {
+        "duration_min": 20,
+        "notes": "Nur Körpergewicht, niedriges Volumen"
+      }
     },
     {
-      "date": "2026-06-20",
-      "discipline": "swim",
-      "title": "Schwimmen kurz",
-      "description": "800m, 4×50m bei Renntempo als Einschub.",
-      "duration_min": 30,
-      "distance_km": 0.8,
-      "target_tss": 28,
-      "intensity": "moderate"
-    },
-    {
-      "date": "2026-06-21",
+      "day": "thursday",
       "discipline": "bike",
-      "title": "Brick kurz — Rad",
-      "description": "30 min locker, danach Lauf.",
-      "duration_min": 30,
-      "distance_km": 16,
-      "target_tss": 25,
-      "intensity": "easy"
+      "title": "Locker",
+      "duration_min": 45,
+      "target_tss": 30,
+      "structure": [
+        {
+          "type": "steady",
+          "duration_min": 45,
+          "zone": "Z1–Z2"
+        }
+      ],
+      "notes": "Kein Renntempo. Beine lockern."
     },
     {
-      "date": "2026-06-21",
-      "discipline": "run",
-      "title": "Brick kurz — Lauf",
-      "description": "15 min, kein Tempo — Gefühl auffrischen.",
-      "duration_min": 15,
-      "distance_km": 2.5,
-      "target_tss": 15,
-      "intensity": "easy"
+      "day": "friday",
+      "discipline": "swim",
+      "title": "Kurz mit Renntempo-Einschüben",
+      "duration_min": 25,
+      "target_tss": 22,
+      "structure": [
+        {
+          "type": "steady",
+          "distance_m": 600,
+          "zone": "Z1"
+        },
+        {
+          "type": "interval",
+          "reps": 4,
+          "rep_distance_m": 50,
+          "zone": "Z4–Z5",
+          "description": "Renntempo"
+        }
+      ],
+      "notes": "800m gesamt. Wach halten ohne zu belasten."
     },
     {
-      "date": "2026-06-22",
+      "day": "saturday",
+      "discipline": "brick",
+      "title": "Kurzer Brick",
+      "duration_min": 45,
+      "target_tss": 40,
+      "structure": [
+        {
+          "type": "bike",
+          "duration_min": 30,
+          "zone": "Z1–Z2"
+        },
+        {
+          "type": "run",
+          "duration_min": 15,
+          "zone": "Z2"
+        }
+      ],
+      "notes": "Kein Tempo — nur das Gefühl auffrischen."
+    },
+    {
+      "day": "sunday",
       "discipline": "run",
-      "title": "Laufen locker",
-      "description": "30 min Zone 2.",
+      "title": "Locker",
       "duration_min": 30,
-      "distance_km": 6,
-      "target_tss": 25,
-      "intensity": "easy"
+      "target_tss": 24,
+      "structure": [
+        {
+          "type": "steady",
+          "duration_min": 30,
+          "zone": "Z2"
+        }
+      ],
+      "notes": "Letzte entspannte Einheit vor Woche 5."
     }
   ]
 }

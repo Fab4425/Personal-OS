@@ -23,7 +23,7 @@ Antworte NUR mit gültigem JSON (kein Markdown).
   "workouts": [
     {
       "day": "monday",
-      "discipline": "swim|bike|run|gym|race",
+      "discipline": "swim|bike|run|gym|race|brick|rest",
       "title": "Titel",
       "duration_min": 60,
       "distance_km": 40,

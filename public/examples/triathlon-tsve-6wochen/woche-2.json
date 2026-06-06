@@ -1,97 +1,172 @@
 {
   "version": 1,
-  "plan_name": "TSVE Bielefeld — Woche 2 Volumen + Brick",
-  "week_start": "2026-06-02",
-  "week_notes": "Fokus: Volumen leicht steigern, erste Brick-Einheit, Schwimmtempo. ~6–7h. Du bist in dieser Woche — Mo=Schwimmen, Di=Lauf+Kraft, Mi=Rad, Do=Lauf Z2 (heute), Fr=Kraft, Sa=Brick.",
+  "plan_name": "Woche 2 — Volumen steigern",
+  "week_start": "2026-06-16",
+  "focus": "Volumen leicht steigern, erste Brick-Einheit, Schwimmtempo",
+  "volume_total": "~6–7h",
   "workouts": [
     {
-      "date": "2026-06-02",
+      "day": "monday",
       "discipline": "swim",
-      "title": "Schwimmen Intervalle",
-      "description": "1.400m: Warm-up 300m, 6×100m bei ~1:45/100m (30s Pause), Cool-down 200m.",
+      "title": "Intervalle",
       "duration_min": 40,
-      "distance_km": 1.4,
       "target_tss": 42,
-      "intensity": "moderate",
       "structure": [
-        { "type": "warmup", "duration_min": 8, "notes": "300m" },
-        { "type": "interval", "duration_min": 18, "zone": "CSS+5", "notes": "6×100m, 30s Pause" },
-        { "type": "cooldown", "duration_min": 5, "notes": "200m" }
-      ]
+        {
+          "type": "warmup",
+          "distance_m": 300,
+          "zone": "Z1"
+        },
+        {
+          "type": "interval",
+          "reps": 6,
+          "rep_distance_m": 100,
+          "pace_per_100m": "1:45",
+          "rest_s": 30,
+          "zone": "Z3–Z4"
+        },
+        {
+          "type": "cooldown",
+          "distance_m": 200,
+          "zone": "Z1"
+        }
+      ],
+      "notes": "1.400m gesamt."
     },
     {
-      "date": "2026-06-03",
+      "day": "tuesday",
       "discipline": "run",
-      "title": "Laufen Tempo",
-      "description": "5km Tempo ~4:20/km.",
-      "duration_min": 25,
-      "distance_km": 5,
+      "title": "Tempo + Beinkraft",
+      "duration_min": 30,
       "target_tss": 45,
-      "intensity": "hard"
-    },
-    {
-      "date": "2026-06-03",
-      "discipline": "gym",
-      "title": "Kraft Beine",
-      "description": "Kniebeugen 3×15, Wadenheben 3×20, Seitstütz 3×30s.",
-      "duration_min": 25,
-      "target_tss": 15,
-      "intensity": "moderate"
-    },
-    {
-      "date": "2026-06-04",
-      "discipline": "bike",
-      "title": "Rad Tempo",
-      "description": "3×8 min bei Renntempo mit 3 min locker dazwischen.",
-      "duration_min": 60,
-      "distance_km": 32,
-      "target_tss": 58,
-      "intensity": "moderate",
       "structure": [
-        { "type": "warmup", "duration_min": 15 },
-        { "type": "interval", "duration_min": 24, "zone": "Renntempo", "notes": "3×8 min" },
-        { "type": "recovery", "duration_min": 9, "notes": "3×3 min locker" },
-        { "type": "cooldown", "duration_min": 12 }
-      ]
+        {
+          "type": "steady",
+          "distance_km": 5,
+          "zone": "Z4",
+          "pace_per_km": "4:20"
+        }
+      ],
+      "gym": {
+        "exercises": [
+          {
+            "name": "Kniebeugen",
+            "sets": 3,
+            "reps": 15
+          },
+          {
+            "name": "Wadenheben",
+            "sets": 3,
+            "reps": 20
+          },
+          {
+            "name": "Seitstütz",
+            "sets": 3,
+            "reps_or_duration": "30s"
+          }
+        ]
+      }
     },
     {
-      "date": "2026-06-05",
+      "day": "wednesday",
+      "discipline": "bike",
+      "title": "Tempo",
+      "duration_min": 60,
+      "target_tss": 58,
+      "structure": [
+        {
+          "type": "interval",
+          "reps": 3,
+          "rep_duration_min": 8,
+          "zone": "Z4",
+          "description": "Renntempo"
+        },
+        {
+          "type": "recovery",
+          "reps": 3,
+          "rep_duration_min": 3,
+          "zone": "Z1"
+        }
+      ],
+      "notes": "60 min gesamt."
+    },
+    {
+      "day": "thursday",
       "discipline": "run",
-      "title": "Laufen Z2 Erholung",
-      "description": "35 min locker, Zone 2. Bewusst langsam — Erholung vom Tempolauf Di.",
+      "title": "Zone 2 Erholung",
       "duration_min": 35,
-      "distance_km": 7,
-      "target_tss": 30,
-      "intensity": "easy"
+      "target_tss": 28,
+      "structure": [
+        {
+          "type": "steady",
+          "duration_min": 35,
+          "zone": "Z2"
+        }
+      ],
+      "notes": "Bewusst langsam — Erholung vom Tempolauf Di."
     },
     {
-      "date": "2026-06-06",
+      "day": "friday",
       "discipline": "gym",
-      "title": "Kraft Vollkörper",
-      "description": "Klimmzüge, Liegestütze, Dips, Plank, Ausfallschritte, Rumpfrotation. Kein Cardio.",
+      "title": "Vollkörper Kraft",
       "duration_min": 45,
       "target_tss": 20,
-      "intensity": "moderate"
+      "structure": [],
+      "gym": {
+        "exercises": [
+          {
+            "name": "Klimmzüge"
+          },
+          {
+            "name": "Liegestütze"
+          },
+          {
+            "name": "Dips"
+          },
+          {
+            "name": "Plank"
+          },
+          {
+            "name": "Ausfallschritte"
+          },
+          {
+            "name": "Rumpfrotation"
+          }
+        ]
+      },
+      "notes": "Kein Cardio."
     },
     {
-      "date": "2026-06-07",
-      "discipline": "bike",
-      "title": "Brick — Rad",
-      "description": "45 min (~35 km/h Ziel). Direkt danach Laufen (separater Eintrag).",
-      "duration_min": 45,
-      "distance_km": 26,
-      "target_tss": 48,
-      "intensity": "moderate"
+      "day": "saturday",
+      "discipline": "brick",
+      "title": "Brick Rad+Lauf",
+      "duration_min": 60,
+      "target_tss": 72,
+      "structure": [
+        {
+          "type": "bike",
+          "duration_min": 45,
+          "zone": "Z3–Z4",
+          "target_speed_kmh": 35
+        },
+        {
+          "type": "transition",
+          "description": "T1 — sofortiger Wechsel"
+        },
+        {
+          "type": "run",
+          "duration_min": 15,
+          "zone": "Z3",
+          "description": "Brick-Gefühl bewusst wahrnehmen"
+        }
+      ],
+      "notes": "Erste 3 min Brick-Gefühl bewusst wahrnehmen. Nicht erschrecken."
     },
     {
-      "date": "2026-06-07",
-      "discipline": "run",
-      "title": "Brick — Lauf",
-      "description": "15 min direkt nach dem Rad. Erste 3 min Brick-Gefühl bewusst wahrnehmen.",
-      "duration_min": 15,
-      "distance_km": 2.5,
-      "target_tss": 22,
-      "intensity": "moderate"
+      "day": "sunday",
+      "discipline": "rest",
+      "title": "Ruhe",
+      "notes": "Komplett frei. Brick-Einheiten sind fordernd."
     }
   ]
 }

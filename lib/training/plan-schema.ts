@@ -8,6 +8,8 @@ export const VALID_DISCIPLINES = [
   "run",
   "gym",
   "race",
+  "brick",
+  "rest",
 ] as const;
 
 export type PlanDiscipline = (typeof VALID_DISCIPLINES)[number];
@@ -84,6 +86,8 @@ function normalizeDiscipline(raw: string): PlanDiscipline | null {
   if (d === "running" || d === "lauf" || d === "run") return "run";
   if (d === "strength" || d === "kraft" || d === "gym") return "gym";
   if (d === "race" || d === "wettkampf") return "race";
+  if (d === "brick" || d === "zweikampf") return "brick";
+  if (d === "rest" || d === "ruhe" || d === "ruhetag" || d === "off") return "rest";
   if (VALID_DISCIPLINES.includes(d as PlanDiscipline)) {
     return d as PlanDiscipline;
   }
@@ -139,7 +143,7 @@ export function parseTrainingPlanJson(
     const discipline = normalizeDiscipline(w.discipline ?? "");
     if (!discipline) {
       throw new Error(
-        `Workout ${i + 1}: discipline ungültig (${w.discipline}). Erlaubt: swim, bike, run, gym, race`
+        `Workout ${i + 1}: discipline ungültig (${w.discipline}). Erlaubt: swim, bike, run, gym, race, brick, rest`
       );
     }
     if (!w.title?.trim()) {

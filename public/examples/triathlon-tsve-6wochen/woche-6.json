@@ -1,67 +1,136 @@
 {
   "version": 1,
-  "plan_name": "TSVE Bielefeld — Woche 6 Tapering",
-  "week_start": "2026-06-30",
-  "week_notes": "Fokus: Tapering — Volumen runter, Beine frisch. Rennen So 06.07. 🏁",
+  "plan_name": "Woche 6 — Tapering",
+  "week_start": "2026-07-14",
+  "focus": "Tapering — Volumen stark runter, Beine frisch halten, mental vorbereiten",
+  "volume_total": "~3h",
   "workouts": [
     {
-      "date": "2026-07-01",
-      "discipline": "swim",
-      "title": "Schwimmen locker",
-      "description": "1.000m locker + 4×50m Renntempo.",
-      "duration_min": 35,
-      "distance_km": 1,
-      "target_tss": 28,
-      "intensity": "easy"
+      "day": "monday",
+      "discipline": "rest",
+      "title": "Tapering Ruhe",
+      "notes": "Komplett frei. Rennsimulation Sa war der letzte große Block."
     },
     {
-      "date": "2026-07-02",
-      "discipline": "bike",
-      "title": "Brick kurz — Rad",
-      "description": "30 min, 2×5 min Renntempo. Danach Lauf.",
+      "day": "tuesday",
+      "discipline": "swim",
+      "title": "Locker + Renntempo-Strides",
       "duration_min": 30,
-      "distance_km": 16,
-      "target_tss": 32,
-      "intensity": "moderate"
-    },
-    {
-      "date": "2026-07-02",
-      "discipline": "run",
-      "title": "Brick kurz — Lauf",
-      "description": "10 min direkt nach Rad. Klickpedale nochmal.",
-      "duration_min": 10,
-      "distance_km": 1.8,
-      "target_tss": 15,
-      "intensity": "moderate"
-    },
-    {
-      "date": "2026-07-04",
-      "discipline": "swim",
-      "title": "Schwimmen kurz",
-      "description": "600m locker schwimmen.",
-      "duration_min": 22,
-      "distance_km": 0.6,
-      "target_tss": 18,
-      "intensity": "easy"
-    },
-    {
-      "date": "2026-07-04",
-      "discipline": "run",
-      "title": "Laufen Strides",
-      "description": "15 min Joggen + 3×100m flotte Strides. Beine wach, nicht müde.",
-      "duration_min": 20,
-      "distance_km": 3,
       "target_tss": 20,
-      "intensity": "moderate"
+      "structure": [
+        {
+          "type": "steady",
+          "distance_m": 1000,
+          "zone": "Z1"
+        },
+        {
+          "type": "interval",
+          "reps": 4,
+          "rep_distance_m": 50,
+          "zone": "Z4–Z5",
+          "description": "Renntempo"
+        }
+      ],
+      "notes": "Technikgefühl auffrischen."
     },
     {
-      "date": "2026-07-06",
+      "day": "wednesday",
+      "discipline": "brick",
+      "title": "Kurzer Tapering-Brick",
+      "duration_min": 40,
+      "target_tss": 38,
+      "structure": [
+        {
+          "type": "bike",
+          "duration_min": 20,
+          "zone": "Z1–Z2"
+        },
+        {
+          "type": "interval",
+          "reps": 2,
+          "rep_duration_min": 5,
+          "zone": "Z4",
+          "description": "Renntempo Einschübe"
+        },
+        {
+          "type": "run",
+          "duration_min": 10,
+          "zone": "Z2–Z3"
+        }
+      ],
+      "notes": "Rad 30 min (2×5 min Renntempo) → sofort 10 min Laufen. Klickpedale nochmal."
+    },
+    {
+      "day": "thursday",
+      "discipline": "rest",
+      "title": "Ruhe",
+      "notes": "Ausrüstung checken, Transitionstasche packen."
+    },
+    {
+      "day": "friday",
+      "discipline": "swim",
+      "title": "Kurz Schwimmen + Strides",
+      "duration_min": 30,
+      "target_tss": 18,
+      "structure": [
+        {
+          "type": "steady",
+          "distance_m": 600,
+          "zone": "Z1"
+        }
+      ],
+      "run_addon": {
+        "duration_min": 15,
+        "structure": [
+          {
+            "type": "steady",
+            "duration_min": 15,
+            "zone": "Z1–Z2"
+          },
+          {
+            "type": "strides",
+            "reps": 3,
+            "rep_distance_m": 100,
+            "zone": "Z4",
+            "description": "Flotte Strides"
+          }
+        ]
+      },
+      "notes": "Beine wach, nicht müde."
+    },
+    {
+      "day": "saturday",
+      "discipline": "rest",
+      "title": "Kein Training — Rennvortag",
+      "notes": "Alles vorbereiten, früh essen, früh schlafen. Maximal 10 min Rad zur Streckenbesichtigung."
+    },
+    {
+      "day": "sunday",
       "discipline": "race",
-      "title": "🏁 RENNEN — TSVE Bielefeld",
-      "description": "Du hast 6 Wochen trainiert. Vertrau dem Plan.",
-      "duration_min": 90,
-      "target_tss": 100,
-      "intensity": "race"
+      "title": "RENNEN — TSVE Bielefeld",
+      "structure": [
+        {
+          "type": "swim",
+          "distance_m": 500
+        },
+        {
+          "type": "transition",
+          "description": "T1"
+        },
+        {
+          "type": "bike",
+          "distance_km": 20
+        },
+        {
+          "type": "transition",
+          "description": "T2"
+        },
+        {
+          "type": "run",
+          "distance_km": 5
+        }
+      ],
+      "notes": "Du hast 6 Wochen trainiert. Vertrau dem Plan."
     }
   ]
 }

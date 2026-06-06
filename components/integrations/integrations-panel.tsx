@@ -93,8 +93,14 @@ export function IntegrationsPanel() {
       setMessage(data.error ?? "Garmin-Sync fehlgeschlagen");
       return;
     }
+    const errHint =
+      data.workoutErrors?.length > 0
+        ? ` Fehler: ${data.workoutErrors.join("; ")}`
+        : data.workoutsUpserted === 0 && data.activitiesFetched > 0
+          ? " (0 Workouts gespeichert — ggf. Migration phase2_sync ausführen)"
+          : "";
     setMessage(
-      `Garmin: ${data.workoutsUpserted} Workouts, ${data.healthDaysUpserted} Gesundheitstage. Readiness: ${data.readiness?.overall_score ?? "—"}`
+      `Garmin: ${data.workoutsUpserted} Workouts (${data.activitiesFetched} von Garmin), ${data.healthDaysUpserted} Gesundheitstage. Readiness: ${data.readiness?.overall_score ?? "—"}${errHint}`
     );
     loadStatus();
   }

@@ -31,7 +31,15 @@ export function mapGarminActivityToDiscipline(
   ) {
     return "run";
   }
-  if (name.includes("wettkampf") || name.includes("race") || key.includes("race")) {
+  if (
+    name.includes("wettkampf") ||
+    name.includes("race") ||
+    name.includes("brick") ||
+    name.includes("triathlon") ||
+    key.includes("race") ||
+    key.includes("multi_sport") ||
+    key === "transition"
+  ) {
     return "race";
   }
   if (

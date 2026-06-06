@@ -24,6 +24,8 @@ const disciplineLabels: Record<string, string> = {
   run: "Laufen",
   gym: "Gym",
   race: "Wettkampf",
+  brick: "Brick",
+  rest: "Ruhe",
 };
 
 export function WorkoutFeed({ workouts }: { workouts: WorkoutRow[] }) {

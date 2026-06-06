@@ -1,4 +1,5 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
+import { format } from "date-fns";
 import { effectiveDurationSec } from "@/lib/training/normalize";
 
 export interface CompletedWorkoutRow {
@@ -11,15 +12,52 @@ export interface CompletedWorkoutRow {
   raw_data: unknown;
 }
 
-export function matchCompletedWorkout(
-  planned: { date: string; discipline: string },
-  completed: CompletedWorkoutRow[]
-): CompletedWorkoutRow | null {
-  const sameDay = completed.filter(
-    (w) => w.date === planned.date && w.discipline === planned.discipline
+function isBrickPlanned(
+  planned: { date: string; discipline: string; title?: string },
+  allPlanned: { date: string; discipline: string; title?: string }[]
+): boolean {
+  if (planned.discipline === "brick") return true;
+  if (planned.title?.toLowerCase().includes("brick")) return true;
+  const day = allPlanned.filter((p) => p.date === planned.date);
+  return (
+    day.some((p) => p.discipline === "bike") &&
+    day.some((p) => p.discipline === "run")
   );
-  if (sameDay.length === 1) return sameDay[0];
-  if (sameDay.length > 1) return sameDay[0];
+}
+
+function brickMatchOnDay(
+  sameDay: CompletedWorkoutRow[]
+): CompletedWorkoutRow | null {
+  const race = sameDay.filter((w) => w.discipline === "race");
+  if (race.length >= 1) return race[0];
+
+  const bike = sameDay.find((w) => w.discipline === "bike");
+  const run = sameDay.find((w) => w.discipline === "run");
+  if (bike && run) return bike;
+  if (bike) return bike;
+  if (run) return run;
+  return null;
+}
+
+export function matchCompletedWorkout(
+  planned: { date: string; discipline: string; title?: string },
+  completed: CompletedWorkoutRow[],
+  allPlanned: { date: string; discipline: string; title?: string }[] = []
+): CompletedWorkoutRow | null {
+  const sameDay = completed.filter((w) => w.date === planned.date);
+  const direct = sameDay.filter((w) => w.discipline === planned.discipline);
+  if (direct.length >= 1) return direct[0];
+
+  if (isBrickPlanned(planned, allPlanned)) {
+    if (planned.discipline === "brick") {
+      return brickMatchOnDay(sameDay);
+    }
+    if (planned.discipline === "bike" || planned.discipline === "run") {
+      const brick = brickMatchOnDay(sameDay);
+      if (brick) return brick;
+    }
+  }
+
   return null;
 }
 
@@ -30,13 +68,22 @@ export async function syncPlannedWorkoutStatus(
 ): Promise<void> {
   const { data: planned } = await supabase
     .from("planned_workouts")
-    .select("id, date, discipline, duration_min, target_tss")
+    .select("id, date, discipline, title, duration_min, target_tss")
     .eq("plan_id", planId)
     .eq("user_id", userId);
 
   if (!planned?.length) return;
 
-  const dates = Array.from(new Set(planned.map((p) => p.date)));
+  const plannedRows = planned.map((p) => ({
+    id: p.id,
+    date: String(p.date).slice(0, 10),
+    discipline: p.discipline,
+    title: p.title ?? undefined,
+    duration_min: p.duration_min,
+    target_tss: p.target_tss,
+  }));
+
+  const dates = Array.from(new Set(plannedRows.map((p) => p.date)));
   const minDate = dates.sort()[0];
   const maxDate = dates.sort().at(-1)!;
 
@@ -57,15 +104,34 @@ export async function syncPlannedWorkoutStatus(
     raw_data: w.raw_data,
   }));
 
-  for (const p of planned) {
-    const match = matchCompletedWorkout(p, completed);
+  for (const p of plannedRows) {
+    if (p.discipline === "rest") {
+      const today = format(new Date(), "yyyy-MM-dd");
+      const status = p.date <= today ? "completed" : "planned";
+      await supabase
+        .from("planned_workouts")
+        .update({ status, completed_workout_id: null })
+        .eq("id", p.id);
+      continue;
+    }
+
+    const match = matchCompletedWorkout(p, completed, plannedRows);
     let status: "planned" | "completed" | "partial" = "planned";
     let completed_workout_id: string | null = null;
 
     if (match) {
       completed_workout_id = match.id;
       const plannedMin = p.duration_min ?? 0;
-      const actualMin = Math.round((match.duration_sec ?? 0) / 60);
+      let actualSec = match.duration_sec ?? 0;
+      if (p.discipline === "brick") {
+        const dayWorkouts = completed.filter((w) => w.date === p.date);
+        const bike = dayWorkouts.find((w) => w.discipline === "bike");
+        const run = dayWorkouts.find((w) => w.discipline === "run");
+        if (bike && run) {
+          actualSec = (bike.duration_sec ?? 0) + (run.duration_sec ?? 0);
+        }
+      }
+      const actualMin = Math.round(actualSec / 60);
       if (plannedMin <= 0 || actualMin >= plannedMin * 0.7) {
         status = "completed";
       } else {
@@ -77,5 +143,19 @@ export async function syncPlannedWorkoutStatus(
       .from("planned_workouts")
       .update({ status, completed_workout_id })
       .eq("id", p.id);
+  }
+}
+
+export async function syncAllPlanStatusesForUser(
+  supabase: SupabaseClient,
+  userId: string
+): Promise<void> {
+  const { data: plans } = await supabase
+    .from("training_plans")
+    .select("id")
+    .eq("user_id", userId);
+
+  for (const plan of plans ?? []) {
+    await syncPlannedWorkoutStatus(supabase, userId, plan.id);
   }
 }

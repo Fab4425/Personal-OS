@@ -69,7 +69,7 @@ export type Database = {
           id: string;
           user_id: string;
           source: "garmin" | "strava" | "manual";
-          discipline: "swim" | "bike" | "run" | "gym" | "race";
+          discipline: "swim" | "bike" | "run" | "gym" | "race" | "brick" | "rest";
           date: string;
           duration_sec: number | null;
           distance_m: number | null;
@@ -87,7 +87,7 @@ export type Database = {
           id?: string;
           user_id: string;
           source: "garmin" | "strava" | "manual";
-          discipline: "swim" | "bike" | "run" | "gym" | "race";
+          discipline: "swim" | "bike" | "run" | "gym" | "race" | "brick" | "rest";
           date: string;
           duration_sec?: number | null;
           distance_m?: number | null;
@@ -138,7 +138,7 @@ export type Database = {
           plan_id: string;
           user_id: string;
           date: string;
-          discipline: "swim" | "bike" | "run" | "gym" | "race";
+          discipline: "swim" | "bike" | "run" | "gym" | "race" | "brick" | "rest";
           title: string;
           description: string | null;
           duration_min: number | null;
@@ -156,7 +156,7 @@ export type Database = {
           plan_id: string;
           user_id: string;
           date: string;
-          discipline: "swim" | "bike" | "run" | "gym" | "race";
+          discipline: "swim" | "bike" | "run" | "gym" | "race" | "brick" | "rest";
           title: string;
           description?: string | null;
           duration_min?: number | null;
@@ -487,7 +487,7 @@ export type Database = {
     Enums: {
       oauth_provider: "garmin" | "strava" | "google";
       workout_source: "garmin" | "strava" | "manual";
-      workout_discipline: "swim" | "bike" | "run" | "gym" | "race";
+      workout_discipline: "swim" | "bike" | "run" | "gym" | "race" | "brick" | "rest";
       calendar_event_type: "training" | "academic" | "personal" | "project";
       dev_project_status: "idea" | "active" | "paused" | "done";
       academic_record_type: "exam" | "assignment" | "course";

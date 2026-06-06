@@ -41,6 +41,8 @@ const DISCIPLINE_COLOR: Record<string, string> = {
   run: "bg-emerald-500/15 text-emerald-700 dark:text-emerald-300",
   gym: "bg-violet-500/15 text-violet-700 dark:text-violet-300",
   race: "bg-red-500/15 text-red-700 dark:text-red-300",
+  brick: "bg-amber-500/15 text-amber-800 dark:text-amber-300",
+  rest: "bg-slate-500/15 text-slate-600 dark:text-slate-300",
 };
 
 function formatDay(date: string) {
