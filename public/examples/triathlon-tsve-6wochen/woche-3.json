@@ -1,142 +1,64 @@
 {
   "version": 1,
-  "plan_name": "Woche 3 — Peak-Volumen",
+  "plan_name": "Woche 3",
   "week_start": "2026-06-23",
   "focus": "Höchstes Volumen dieser 6 Wochen, Rennsimulation Schwimmen",
-  "volume_total": "~7–8h",
+  "summary": {
+    "schwimmen": "3×",
+    "rad": "2×",
+    "laufen": "3×",
+    "kraft": "1×",
+    "gesamt": "~7–8h"
+  },
   "workouts": [
     {
       "day": "monday",
       "discipline": "swim",
-      "title": "Rennsimulation",
-      "duration_min": 15,
-      "target_tss": 40,
-      "structure": [
-        {
-          "type": "time_trial",
-          "distance_m": 500,
-          "zone": "Z5",
-          "description": "So schnell wie möglich — Zeit messen"
-        }
-      ],
-      "notes": "Referenzzeit für das Rennen."
+      "title": "Schwimmen",
+      "tags": ["Rennsimulation"],
+      "description": "500m so schnell wie möglich — messe deine Zeit. Das ist deine Referenz."
     },
     {
       "day": "tuesday",
       "discipline": "run",
-      "title": "Intervalle",
-      "duration_min": 50,
-      "target_tss": 62,
-      "structure": [
-        {
-          "type": "interval",
-          "reps": 5,
-          "rep_distance_km": 1,
-          "pace_per_km": "4:00",
-          "rest_s": 90,
-          "zone": "Z4–Z5"
-        },
-        {
-          "type": "cooldown",
-          "duration_min": 10,
-          "zone": "Z1"
-        }
-      ]
+      "title": "Laufen",
+      "tags": ["Intervalle"],
+      "description": "5×1km bei ~4:00/km, 90s Pause. Danach 10 min locker. Lauf-Kern dieser Woche."
     },
     {
       "day": "wednesday",
       "discipline": "bike",
-      "title": "Ausdauer",
-      "duration_min": 83,
-      "target_tss": 68,
-      "structure": [
-        {
-          "type": "steady",
-          "duration_min": 83,
-          "zone": "Z2–Z3",
-          "cadence_rpm": "85–95"
-        }
-      ],
-      "notes": "75–90 min gesamt. Fokus auf Tritt-Kadenz."
+      "title": "Rad",
+      "tags": ["Ausdauer"],
+      "description": "75–90 min locker bis moderat. Fokus auf Tritt-Kadenz (85–95 U/min anpeilen)."
     },
     {
       "day": "thursday",
-      "discipline": "swim",
-      "title": "Technik + Rumpfkraft",
-      "duration_min": 40,
-      "target_tss": 30,
-      "structure": [
-        {
-          "type": "steady",
-          "distance_m": 1200,
-          "zone": "Z2",
-          "focus": "Technik"
-        }
-      ],
-      "gym": {
-        "focus": "Rumpf und Schultern",
-        "notes": "Leichtes Krafttraining"
-      }
+      "discipline": "swim+gym",
+      "title": "Schwimmen + Kraft",
+      "tags": ["Technik", "Rumpf"],
+      "description": "1.200m Technikfokus. Danach leichtes Krafttraining nur Rumpf und Schultern."
     },
     {
       "day": "friday",
       "discipline": "run",
-      "title": "Zone 2",
-      "duration_min": 45,
-      "target_tss": 38,
-      "structure": [
-        {
-          "type": "steady",
-          "duration_min": 45,
-          "zone": "Z2"
-        }
-      ],
-      "notes": "Erholung nach den Intervallen Di."
+      "title": "Laufen",
+      "tags": ["Z2"],
+      "description": "45 min Zone 2. Erholung nach den Intervallen Di."
     },
     {
       "day": "saturday",
       "discipline": "brick",
-      "title": "Brick Rad+Lauf",
-      "duration_min": 75,
-      "target_tss": 88,
-      "structure": [
-        {
-          "type": "bike",
-          "duration_min": 55,
-          "zone": "Z4",
-          "description": "20km Renntempo testen"
-        },
-        {
-          "type": "transition",
-          "description": "T1 üben"
-        },
-        {
-          "type": "run",
-          "duration_min": 10,
-          "zone": "Z2"
-        },
-        {
-          "type": "run",
-          "duration_min": 10,
-          "zone": "Z4",
-          "description": "Letzte 10 min bei Renntempo"
-        }
-      ]
+      "title": "Brick",
+      "tags": ["Rad+Lauf"],
+      "description": "Rad 55 min (20km Renntempo testen) → Lauf 20 min mit letzten 10 min bei Renntempo. T1 üben."
     },
     {
       "day": "sunday",
       "discipline": "swim",
-      "title": "Aktive Erholung",
-      "duration_min": 25,
-      "target_tss": 15,
-      "structure": [
-        {
-          "type": "steady",
-          "distance_m": 800,
-          "zone": "Z1"
-        }
-      ],
-      "notes": "Sehr locker, kein Tempo."
+      "title": "Schwimmen",
+      "tags": ["locker"],
+      "description": "800m sehr locker als aktive Erholung. Kein Tempo."
     }
   ]
 }

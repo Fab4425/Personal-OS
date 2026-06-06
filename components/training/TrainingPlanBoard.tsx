@@ -1,60 +1,43 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useMemo } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { format } from "date-fns";
 import { TrainingPlanImport } from "@/components/training/TrainingPlanImport";
 import { TrainingPlanWeek } from "@/components/training/TrainingPlanWeek";
 import type {
+  CompletedActivityView,
   PlannedWorkoutView,
   TrainingPlanView,
 } from "@/lib/training/plan-types";
+import { groupCompletedByDate } from "@/lib/training/plan-utils";
 import { Button } from "@/components/ui/button";
 
 interface TrainingPlanBoardProps {
-  initialPlan: TrainingPlanView | null;
-  initialWorkouts: PlannedWorkoutView[];
+  plan: TrainingPlanView | null;
+  workouts: PlannedWorkoutView[];
+  completedActivities: CompletedActivityView[];
+  allPlans: TrainingPlanView[];
+  loading?: boolean;
+  onRevalidate: () => void;
 }
 
 export function TrainingPlanBoard({
-  initialPlan,
-  initialWorkouts,
+  plan,
+  workouts,
+  completedActivities,
+  allPlans,
+  loading = false,
+  onRevalidate,
 }: TrainingPlanBoardProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const weekParam = searchParams.get("week");
+  const today = format(new Date(), "yyyy-MM-dd");
 
-  const [plan, setPlan] = useState(initialPlan);
-  const [workouts, setWorkouts] = useState(initialWorkouts);
-  const [allPlans, setAllPlans] = useState<TrainingPlanView[]>([]);
-  const [loading, setLoading] = useState(false);
-
-  const loadWeek = useCallback(async (weekStart: string) => {
-    setLoading(true);
-    const res = await fetch(
-      `/api/training/plan?week_start=${encodeURIComponent(weekStart)}`
-    );
-    const data = (await res.json()) as {
-      plan: TrainingPlanView | null;
-      workouts: PlannedWorkoutView[];
-    };
-    setPlan(data.plan);
-    setWorkouts(data.workouts ?? []);
-    setLoading(false);
-  }, []);
-
-  useEffect(() => {
-    void fetch("/api/training/plan?list=all")
-      .then((r) => r.json())
-      .then((data: { plans?: TrainingPlanView[] }) => {
-        setAllPlans(data.plans ?? []);
-      });
-  }, [initialPlan, initialWorkouts]);
-
-  useEffect(() => {
-    if (weekParam && weekParam !== plan?.week_start) {
-      void loadWeek(weekParam);
-    }
-  }, [weekParam, plan?.week_start, loadWeek]);
+  const completedByDate = useMemo(
+    () => groupCompletedByDate(completedActivities),
+    [completedActivities]
+  );
 
   function selectWeek(weekStart: string) {
     const params = new URLSearchParams(searchParams.toString());
@@ -62,41 +45,56 @@ export function TrainingPlanBoard({
     router.push(`/training?${params.toString()}`);
   }
 
+  function weekContainsToday(p: TrainingPlanView) {
+    return p.week_start <= today && p.week_end >= today;
+  }
+
   return (
     <div className="space-y-4">
       <TrainingPlanImport
         onImported={() => {
-          router.refresh();
-          void fetch("/api/training/plan?list=all")
-            .then((r) => r.json())
-            .then((data: { plans?: TrainingPlanView[] }) => {
-              setAllPlans(data.plans ?? []);
-            });
+          onRevalidate();
         }}
       />
 
       {allPlans.length > 0 && (
         <div className="flex flex-wrap gap-2">
-          {allPlans.map((p, i) => (
-            <Button
-              key={p.id}
-              type="button"
-              size="sm"
-              variant={
-                plan?.week_start === p.week_start ? "default" : "outline"
-              }
-              onClick={() => selectWeek(p.week_start)}
-            >
-              Wo {i + 1}
-            </Button>
-          ))}
+          {allPlans.map((p, i) => {
+            const isSelected = plan?.week_start === p.week_start;
+            const isCurrentWeek = weekContainsToday(p);
+
+            return (
+              <Button
+                key={p.id}
+                type="button"
+                size="sm"
+                variant={isSelected ? "default" : "outline"}
+                className={
+                  isCurrentWeek && !isSelected
+                    ? "ring-2 ring-primary ring-offset-2"
+                    : isCurrentWeek
+                      ? "ring-2 ring-primary/60 ring-offset-2"
+                      : undefined
+                }
+                onClick={() => selectWeek(p.week_start)}
+              >
+                Wo {i + 1}
+                {isCurrentWeek ? " · heute" : ""}
+              </Button>
+            );
+          })}
         </div>
       )}
 
       {loading ? (
         <p className="text-sm text-muted-foreground">Lade Woche…</p>
       ) : (
-        <TrainingPlanWeek plan={plan} workouts={workouts} />
+        <TrainingPlanWeek
+          plan={plan}
+          workouts={workouts}
+          today={today}
+          completedByDate={completedByDate}
+        />
       )}
     </div>
   );

@@ -1,18 +1,18 @@
 import { addDays, format, parseISO, startOfWeek } from "date-fns";
+import {
+  BASE_DISCIPLINES,
+  SPECIAL_DISCIPLINES,
+  normalizeDiscipline,
+} from "@/lib/training/discipline-normalize";
 
 export const PLAN_JSON_VERSION = 1;
 
 export const VALID_DISCIPLINES = [
-  "swim",
-  "bike",
-  "run",
-  "gym",
-  "race",
-  "brick",
-  "rest",
+  ...BASE_DISCIPLINES,
+  ...SPECIAL_DISCIPLINES,
 ] as const;
 
-export type PlanDiscipline = (typeof VALID_DISCIPLINES)[number];
+export type PlanDiscipline = string;
 
 export interface PlanIntervalStep {
   type?: string;
@@ -46,7 +46,7 @@ export interface TrainingPlanJson {
 
 export interface ParsedPlanWorkout {
   date: string;
-  discipline: PlanDiscipline;
+  discipline: string;
   title: string;
   description: string | null;
   duration_min: number | null;
@@ -78,21 +78,6 @@ const DAY_OFFSET: Record<string, number> = {
   sun: 6,
   sonntag: 6,
 };
-
-function normalizeDiscipline(raw: string): PlanDiscipline | null {
-  const d = raw.trim().toLowerCase();
-  if (d === "swimming" || d === "schwimmen") return "swim";
-  if (d === "cycling" || d === "rad" || d === "bike") return "bike";
-  if (d === "running" || d === "lauf" || d === "run") return "run";
-  if (d === "strength" || d === "kraft" || d === "gym") return "gym";
-  if (d === "race" || d === "wettkampf") return "race";
-  if (d === "brick" || d === "zweikampf") return "brick";
-  if (d === "rest" || d === "ruhe" || d === "ruhetag" || d === "off") return "rest";
-  if (VALID_DISCIPLINES.includes(d as PlanDiscipline)) {
-    return d as PlanDiscipline;
-  }
-  return null;
-}
 
 function resolveWorkoutDate(
   workout: PlanWorkoutInput,
@@ -143,7 +128,7 @@ export function parseTrainingPlanJson(
     const discipline = normalizeDiscipline(w.discipline ?? "");
     if (!discipline) {
       throw new Error(
-        `Workout ${i + 1}: discipline ungültig (${w.discipline}). Erlaubt: swim, bike, run, gym, race, brick, rest`
+        `Workout ${i + 1}: discipline ungültig (${w.discipline}). Erlaubt: swim, bike, run, gym, race, brick, rest sowie Kombinationen mit +, * oder _ (z. B. swim+run, run*gym)`
       );
     }
     if (!w.title?.trim()) {

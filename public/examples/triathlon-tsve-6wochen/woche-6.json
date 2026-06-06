@@ -1,136 +1,64 @@
 {
   "version": 1,
-  "plan_name": "Woche 6 — Tapering",
+  "plan_name": "Woche 6",
   "week_start": "2026-07-14",
   "focus": "Tapering — Volumen stark runter, Beine frisch halten, mental vorbereiten",
-  "volume_total": "~3h",
+  "summary": {
+    "schwimmen": "2×",
+    "rad": "1×",
+    "laufen": "2×",
+    "kraft": "0×",
+    "gesamt": "~3h"
+  },
   "workouts": [
     {
       "day": "monday",
       "discipline": "rest",
-      "title": "Tapering Ruhe",
-      "notes": "Komplett frei. Rennsimulation Sa war der letzte große Block."
+      "title": "Ruhe",
+      "tags": ["Tapering"],
+      "description": "Komplett frei. Rennsimulation Sa war der letzte große Block."
     },
     {
       "day": "tuesday",
       "discipline": "swim",
-      "title": "Locker + Renntempo-Strides",
-      "duration_min": 30,
-      "target_tss": 20,
-      "structure": [
-        {
-          "type": "steady",
-          "distance_m": 1000,
-          "zone": "Z1"
-        },
-        {
-          "type": "interval",
-          "reps": 4,
-          "rep_distance_m": 50,
-          "zone": "Z4–Z5",
-          "description": "Renntempo"
-        }
-      ],
-      "notes": "Technikgefühl auffrischen."
+      "title": "Schwimmen",
+      "tags": ["locker"],
+      "description": "1.000m locker + 4×50m Renntempo. Technikgefühl auffrischen."
     },
     {
       "day": "wednesday",
       "discipline": "brick",
-      "title": "Kurzer Tapering-Brick",
-      "duration_min": 40,
-      "target_tss": 38,
-      "structure": [
-        {
-          "type": "bike",
-          "duration_min": 20,
-          "zone": "Z1–Z2"
-        },
-        {
-          "type": "interval",
-          "reps": 2,
-          "rep_duration_min": 5,
-          "zone": "Z4",
-          "description": "Renntempo Einschübe"
-        },
-        {
-          "type": "run",
-          "duration_min": 10,
-          "zone": "Z2–Z3"
-        }
-      ],
-      "notes": "Rad 30 min (2×5 min Renntempo) → sofort 10 min Laufen. Klickpedale nochmal."
+      "title": "Brick",
+      "tags": ["kurz"],
+      "description": "Rad 30 min (2×5 min Renntempo) → sofort 10 min Laufen. Klickpedale nochmal."
     },
     {
       "day": "thursday",
       "discipline": "rest",
       "title": "Ruhe",
-      "notes": "Ausrüstung checken, Transitionstasche packen."
+      "tags": ["Erholung"],
+      "description": "Ausrüstung checken, Transitionstasche packen."
     },
     {
       "day": "friday",
-      "discipline": "swim",
-      "title": "Kurz Schwimmen + Strides",
-      "duration_min": 30,
-      "target_tss": 18,
-      "structure": [
-        {
-          "type": "steady",
-          "distance_m": 600,
-          "zone": "Z1"
-        }
-      ],
-      "run_addon": {
-        "duration_min": 15,
-        "structure": [
-          {
-            "type": "steady",
-            "duration_min": 15,
-            "zone": "Z1–Z2"
-          },
-          {
-            "type": "strides",
-            "reps": 3,
-            "rep_distance_m": 100,
-            "zone": "Z4",
-            "description": "Flotte Strides"
-          }
-        ]
-      },
-      "notes": "Beine wach, nicht müde."
+      "discipline": "swim+run",
+      "title": "Schwimmen + Laufen",
+      "tags": ["kurz", "Strides"],
+      "description": "600m locker schwimmen. Später: 15 min Joggen + 3× 100m flotte Strides. Beine wach, nicht müde."
     },
     {
       "day": "saturday",
       "discipline": "rest",
-      "title": "Kein Training — Rennvortag",
-      "notes": "Alles vorbereiten, früh essen, früh schlafen. Maximal 10 min Rad zur Streckenbesichtigung."
+      "title": "Kein Training",
+      "tags": ["Rennvortag"],
+      "description": "Alles vorbereiten, früh essen, früh schlafen. Maximal 10 min Rad zur Streckenbesichtigung."
     },
     {
       "day": "sunday",
       "discipline": "race",
       "title": "RENNEN — TSVE Bielefeld",
-      "structure": [
-        {
-          "type": "swim",
-          "distance_m": 500
-        },
-        {
-          "type": "transition",
-          "description": "T1"
-        },
-        {
-          "type": "bike",
-          "distance_km": 20
-        },
-        {
-          "type": "transition",
-          "description": "T2"
-        },
-        {
-          "type": "run",
-          "distance_km": 5
-        }
-      ],
-      "notes": "Du hast 6 Wochen trainiert. Vertrau dem Plan."
+      "tags": [],
+      "description": "Du hast 6 Wochen trainiert. Vertrau dem Plan."
     }
   ]
 }

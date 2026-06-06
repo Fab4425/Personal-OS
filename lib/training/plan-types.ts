@@ -19,3 +19,13 @@ export interface TrainingPlanView {
   week_end: string;
   week_notes: string | null;
 }
+
+export interface CompletedActivityView {
+  id: string;
+  date: string;
+  discipline: string;
+  source: string;
+  duration_sec: number;
+  distance_m: number | null;
+  name: string | null;
+}

@@ -1,161 +1,64 @@
 {
   "version": 1,
-  "plan_name": "Woche 1 — Grundlage",
+  "plan_name": "Woche 1",
   "week_start": "2026-06-09",
   "focus": "Grundlage aufbauen, Rad kennenlernen, Klickpedale üben",
-  "volume_total": "~5–6h",
+  "summary": {
+    "schwimmen": "2×",
+    "rad": "2×",
+    "laufen": "2×",
+    "kraft": "2×",
+    "gesamt": "~5–6h"
+  },
   "workouts": [
     {
       "day": "monday",
       "discipline": "swim",
-      "title": "Technik",
-      "duration_min": 30,
-      "target_tss": 25,
-      "structure": [
-        {
-          "type": "steady",
-          "duration_min": 15,
-          "zone": "Z1",
-          "description": "1.000m locker"
-        },
-        {
-          "type": "interval",
-          "reps": 4,
-          "rep_distance_m": 50,
-          "zone": "Z2",
-          "focus": "Zugzyklus",
-          "rest_s": 20
-        }
-      ],
-      "notes": "Kein Renntempo."
+      "title": "Schwimmen",
+      "tags": ["Technik"],
+      "description": "1.000m locker. 4×50m mit Fokus auf Zugzyklus. Kein Renntempo."
     },
     {
       "day": "tuesday",
       "discipline": "bike",
-      "title": "Eingewöhnung",
-      "duration_min": 53,
-      "target_tss": 35,
-      "structure": [
-        {
-          "type": "steady",
-          "duration_min": 53,
-          "zone": "Z1–Z2",
-          "description": "Flache Strecke, locker"
-        }
-      ],
-      "notes": "Klickpedale 20× ein/ausklicken üben. Sitzposition prüfen."
+      "title": "Rad",
+      "tags": ["Eingewöhnung"],
+      "description": "45–60 min locker, flache Strecke. Klickpedale 20× ein/ausklicken üben. Sitzposition prüfen."
     },
     {
       "day": "wednesday",
-      "discipline": "run",
-      "title": "Zone 2 + Rumpfkraft",
-      "duration_min": 30,
-      "target_tss": 28,
-      "structure": [
-        {
-          "type": "steady",
-          "duration_min": 30,
-          "zone": "Z2",
-          "pace_per_km": "5:00"
-        }
-      ],
-      "gym": {
-        "exercises": [
-          {
-            "name": "Plank",
-            "sets": 3,
-            "reps_or_duration": "45s"
-          },
-          {
-            "name": "Ausfallschritte",
-            "sets": 3,
-            "reps": 12
-          },
-          {
-            "name": "Liegestütze",
-            "sets": 3,
-            "reps": 15
-          }
-        ]
-      }
+      "discipline": "run+gym",
+      "title": "Laufen + Kraft",
+      "tags": ["Z2", "Rumpf"],
+      "description": "30 min Lauf Zone 2 (easy pace ~5:00/km). Danach: Plank 3×45s, Ausfallschritte 3×12, Liegestütze 3×15."
     },
     {
       "day": "thursday",
       "discipline": "rest",
       "title": "Ruhe",
-      "notes": "Aktive Erholung: spazieren, dehnen, Foam Rolling."
+      "tags": ["Erholung"],
+      "description": "Aktive Erholung: spazieren, dehnen, Foam Rolling."
     },
     {
       "day": "friday",
-      "discipline": "swim",
-      "title": "Ausdauer + Oberkörper",
-      "duration_min": 40,
-      "target_tss": 38,
-      "structure": [
-        {
-          "type": "interval",
-          "reps": 4,
-          "rep_distance_m": 100,
-          "pace_per_100m": "1:50",
-          "zone": "Z3"
-        }
-      ],
-      "notes": "1.200m gesamt.",
-      "gym": {
-        "exercises": [
-          {
-            "name": "Klimmzüge",
-            "sets": 3,
-            "reps": "max"
-          },
-          {
-            "name": "Rudern",
-            "sets": 3,
-            "reps": 12
-          },
-          {
-            "name": "Schulterdrücken",
-            "sets": 3,
-            "reps": 12
-          }
-        ]
-      }
+      "discipline": "swim+gym",
+      "title": "Schwimmen + Kraft",
+      "tags": ["Ausdauer", "Oberkörper"],
+      "description": "1.200m mit 4×100m bei ~1:50/100m. Danach: Klimmzüge 3×max, Rudern 3×12, Schulterdrücken 3×12."
     },
     {
       "day": "saturday",
       "discipline": "bike",
-      "title": "Ausdauer",
-      "duration_min": 68,
-      "target_tss": 60,
-      "structure": [
-        {
-          "type": "steady",
-          "duration_min": 48,
-          "zone": "Z2"
-        },
-        {
-          "type": "interval",
-          "duration_min": 20,
-          "zone": "Z3–Z4",
-          "description": "Renntempo-Gefühl ~33 km/h"
-        }
-      ],
-      "notes": "Strecke ähnlich der Rennstrecke wenn möglich."
+      "title": "Rad",
+      "tags": ["Ausdauer"],
+      "description": "60–75 min, davon 20 min im Renntempo-Gefühl (~33 km/h). Strecke ähnlich der Rennstrecke wenn möglich."
     },
     {
       "day": "sunday",
       "discipline": "run",
-      "title": "Langer Lauf",
-      "duration_min": 43,
-      "target_tss": 38,
-      "structure": [
-        {
-          "type": "steady",
-          "duration_min": 43,
-          "zone": "Z2"
-        }
-      ],
-      "notes": "Kein Druck, Ausdauerbasis aufbauen."
+      "title": "Laufen",
+      "tags": ["Langer Lauf"],
+      "description": "40–45 min Zone 2. Kein Druck, Ausdauerbasis aufbauen."
     }
   ]
 }

@@ -1,134 +1,64 @@
 {
   "version": 1,
-  "plan_name": "Woche 5 — Rennen schärfen",
+  "plan_name": "Woche 5",
   "week_start": "2026-07-07",
   "focus": "Rennen schärfen — Tempo, Übergänge, volle Rennsimulation",
-  "volume_total": "~6–7h",
+  "summary": {
+    "schwimmen": "2×",
+    "rad": "2×",
+    "laufen": "3×",
+    "kraft": "1×",
+    "gesamt": "~6–7h"
+  },
   "workouts": [
     {
       "day": "monday",
       "discipline": "swim",
-      "title": "Intervalle",
-      "duration_min": 45,
-      "target_tss": 50,
-      "structure": [
-        {
-          "type": "interval",
-          "reps": 8,
-          "rep_distance_m": 100,
-          "pace_per_100m": "1:40–1:45",
-          "rest_s": 20,
-          "zone": "Z4"
-        }
-      ],
-      "notes": "1.600m gesamt. Schnellste Woche im Becken."
+      "title": "Schwimmen",
+      "tags": ["Intervalle"],
+      "description": "1.600m: 8×100m bei 1:40–1:45/100m. Kurze Pausen (20s). Schnellste Woche im Becken."
     },
     {
       "day": "tuesday",
       "discipline": "run",
-      "title": "5km Tempo",
-      "duration_min": 56,
-      "target_tss": 68,
-      "structure": [
-        {
-          "type": "warmup",
-          "distance_km": 3,
-          "zone": "Z2"
-        },
-        {
-          "type": "time_trial",
-          "distance_km": 5,
-          "pace_per_km": "4:15",
-          "zone": "Z4–Z5",
-          "description": "Zeit messen"
-        },
-        {
-          "type": "cooldown",
-          "distance_km": 1,
-          "zone": "Z1"
-        }
-      ]
+      "title": "Laufen",
+      "tags": ["Tempo"],
+      "description": "3km Warm-up, 5km bei Renntempo (~4:15/km), 1km Cool-down. Messe die 5km-Zeit."
     },
     {
       "day": "wednesday",
-      "discipline": "bike",
-      "title": "Renntempo + Leichte Kraft",
-      "duration_min": 45,
-      "target_tss": 55,
-      "structure": [
-        {
-          "type": "interval",
-          "reps": 2,
-          "rep_duration_min": 10,
-          "zone": "Z4",
-          "description": "Renntempo"
-        }
-      ],
-      "gym": {
-        "duration_min": 20,
-        "focus": "Rumpf + Schultern"
-      }
+      "discipline": "bike+gym",
+      "title": "Rad + Kraft",
+      "tags": ["Renntempo", "leicht"],
+      "description": "45 min, 2×10 min bei Renntempo. Danach nur Rumpf + Schultern, 20 min."
     },
     {
       "day": "thursday",
       "discipline": "run",
-      "title": "Zone 2 Erholung",
-      "duration_min": 35,
-      "target_tss": 28,
-      "structure": [
-        {
-          "type": "steady",
-          "duration_min": 35,
-          "zone": "Z2"
-        }
-      ],
-      "notes": "Aktive Erholung."
+      "title": "Laufen",
+      "tags": ["Z2"],
+      "description": "35 min Zone 2. Aktive Erholung."
     },
     {
       "day": "friday",
       "discipline": "rest",
       "title": "Ruhe",
-      "notes": "Vorbereitung auf Rennsimulation Sa."
+      "tags": ["Erholung"],
+      "description": "Vorbereitung auf Rennsimulation Sa."
     },
     {
       "day": "saturday",
       "discipline": "brick",
       "title": "Volle Rennsimulation",
-      "duration_min": 105,
-      "target_tss": 130,
-      "structure": [
-        {
-          "type": "swim",
-          "distance_m": 500,
-          "zone": "Z4–Z5",
-          "description": "Renntempo"
-        },
-        {
-          "type": "transition",
-          "description": "T1 mit echter Ausrüstung"
-        },
-        {
-          "type": "bike",
-          "distance_km": 20,
-          "zone": "Z4"
-        },
-        {
-          "type": "transition",
-          "description": "T2"
-        },
-        {
-          "type": "run",
-          "distance_km": 5,
-          "zone": "Z3–Z4"
-        }
-      ],
-      "notes": "Zeiten stoppen. Das ist dein Test-Rennen."
+      "tags": ["Komplett"],
+      "description": "500m Schwimmen Renntempo → T1 (mit echter Ausrüstung) → 20km Rad → T2 → 5km Laufen. Zeiten stoppen. Das ist dein Test-Rennen."
     },
     {
       "day": "sunday",
       "discipline": "rest",
       "title": "Ruhe",
-      "notes": "Nach der Simulation verdient. Beine hochlegen."
+      "tags": ["Erholung"],
+      "description": "Nach der Simulation verdient. Beine hochlegen."
     }
   ]
 }

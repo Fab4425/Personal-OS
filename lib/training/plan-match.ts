@@ -1,5 +1,9 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { format } from "date-fns";
+import {
+  disciplineParts,
+  isComboDiscipline,
+} from "@/lib/training/discipline-normalize";
 import { effectiveDurationSec } from "@/lib/training/normalize";
 
 export interface CompletedWorkoutRow {
@@ -39,6 +43,30 @@ function brickMatchOnDay(
   return null;
 }
 
+function comboMatchOnDay(
+  parts: string[],
+  sameDay: CompletedWorkoutRow[]
+): CompletedWorkoutRow | null {
+  if (parts.length === 0) return null;
+
+  const matches = parts.map((part) =>
+    sameDay.find((w) => w.discipline === part)
+  );
+  if (matches.every(Boolean)) return matches[0]!;
+
+  return matches.find(Boolean) ?? null;
+}
+
+function sumDurationForParts(
+  parts: string[],
+  dayWorkouts: CompletedWorkoutRow[]
+): number {
+  return parts.reduce((sum, part) => {
+    const w = dayWorkouts.find((x) => x.discipline === part);
+    return sum + (w?.duration_sec ?? 0);
+  }, 0);
+}
+
 export function matchCompletedWorkout(
   planned: { date: string; discipline: string; title?: string },
   completed: CompletedWorkoutRow[],
@@ -48,13 +76,19 @@ export function matchCompletedWorkout(
   const direct = sameDay.filter((w) => w.discipline === planned.discipline);
   if (direct.length >= 1) return direct[0];
 
-  if (isBrickPlanned(planned, allPlanned)) {
+  if (isComboDiscipline(planned.discipline)) {
     if (planned.discipline === "brick") {
       return brickMatchOnDay(sameDay);
     }
+    const parts = disciplineParts(planned.discipline);
+    if (parts.length > 1) {
+      return comboMatchOnDay(parts, sameDay);
+    }
+  }
+
+  if (isBrickPlanned(planned, allPlanned)) {
     if (planned.discipline === "bike" || planned.discipline === "run") {
-      const brick = brickMatchOnDay(sameDay);
-      if (brick) return brick;
+      return brickMatchOnDay(sameDay);
     }
   }
 
@@ -123,14 +157,19 @@ export async function syncPlannedWorkoutStatus(
       completed_workout_id = match.id;
       const plannedMin = p.duration_min ?? 0;
       let actualSec = match.duration_sec ?? 0;
-      if (p.discipline === "brick") {
+
+      if (isComboDiscipline(p.discipline)) {
         const dayWorkouts = completed.filter((w) => w.date === p.date);
-        const bike = dayWorkouts.find((w) => w.discipline === "bike");
-        const run = dayWorkouts.find((w) => w.discipline === "run");
-        if (bike && run) {
-          actualSec = (bike.duration_sec ?? 0) + (run.duration_sec ?? 0);
+        if (p.discipline === "brick") {
+          actualSec = sumDurationForParts(["bike", "run"], dayWorkouts);
+        } else {
+          const parts = disciplineParts(p.discipline);
+          if (parts.length > 1) {
+            actualSec = sumDurationForParts(parts, dayWorkouts);
+          }
         }
       }
+
       const actualMin = Math.round(actualSec / 60);
       if (plannedMin <= 0 || actualMin >= plannedMin * 0.7) {
         status = "completed";

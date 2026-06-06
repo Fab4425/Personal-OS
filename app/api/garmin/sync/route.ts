@@ -1,3 +1,4 @@
+import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
@@ -30,6 +31,7 @@ export async function POST(request: Request) {
   try {
     const result = await syncGarminForUser(supabase, user.id);
     const readiness = await calculateReadinessForUser(supabase, user.id);
+    revalidatePath("/training");
     return NextResponse.json({ ...result, readiness });
   } catch (err) {
     resetGarminClientCache();

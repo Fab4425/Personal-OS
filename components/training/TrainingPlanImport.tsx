@@ -1,7 +1,6 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { useRouter } from "next/navigation";
 import { Upload, FileJson, Copy, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -23,7 +22,7 @@ Antworte NUR mit gültigem JSON (kein Markdown).
   "workouts": [
     {
       "day": "monday",
-      "discipline": "swim|bike|run|gym|race|brick|rest",
+      "discipline": "swim|bike|run|gym|race|brick|rest|swim+run|run*gym|…",
       "title": "Titel",
       "duration_min": 60,
       "distance_km": 40,
@@ -41,7 +40,6 @@ export function TrainingPlanImport({
 }: {
   onImported?: () => void;
 } = {}) {
-  const router = useRouter();
   const inputRef = useRef<HTMLInputElement>(null);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
@@ -74,7 +72,6 @@ export function TrainingPlanImport({
       `TSVE 6-Wochen-Plan importiert: ${data.weeks} Wochen, ${data.totalWorkouts} Einheiten gesamt.`
     );
     onImported?.();
-    router.refresh();
   }
 
   async function uploadFile(file: File) {
@@ -108,7 +105,6 @@ export function TrainingPlanImport({
       `„${data.planName}" importiert: ${data.workoutsImported} Einheiten (Woche ab ${data.weekStart}).`
     );
     onImported?.();
-    router.refresh();
   }
 
   function copyPrompt() {

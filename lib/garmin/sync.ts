@@ -76,6 +76,37 @@ function buildWorkoutPayload(
   };
 }
 
+async function rematchGarminDisciplinesFromRaw(
+  supabase: SupabaseClient,
+  userId: string
+): Promise<void> {
+  const { data: rows } = await supabase
+    .from("workouts")
+    .select("id, discipline, raw_data")
+    .eq("user_id", userId)
+    .eq("source", "garmin");
+
+  for (const row of rows ?? []) {
+    const raw = row.raw_data as {
+      activityType?: { typeKey?: string };
+      activityName?: string;
+    } | null;
+    const typeKey = raw?.activityType?.typeKey;
+    if (!typeKey) continue;
+
+    const mapped = mapGarminActivityToDiscipline(
+      typeKey,
+      raw?.activityName ?? ""
+    );
+    if (mapped !== row.discipline) {
+      await supabase
+        .from("workouts")
+        .update({ discipline: mapped })
+        .eq("id", row.id);
+    }
+  }
+}
+
 export async function syncGarminForUser(
   supabase: SupabaseClient,
   userId: string,
@@ -168,6 +199,7 @@ export async function syncGarminForUser(
     { onConflict: "user_id,provider" }
   );
 
+  await rematchGarminDisciplinesFromRaw(supabase, userId);
   await syncAllPlanStatusesForUser(supabase, userId);
 
   return {

@@ -8,6 +8,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { format } from "date-fns";
 import { de } from "date-fns/locale";
+import { formatDisciplineLabel } from "@/lib/training/discipline-normalize";
 
 interface WorkoutRow {
   id: string;
@@ -17,16 +18,6 @@ interface WorkoutRow {
   duration_sec: number | null;
   distance_m: number | null;
 }
-
-const disciplineLabels: Record<string, string> = {
-  swim: "Schwimmen",
-  bike: "Rad",
-  run: "Laufen",
-  gym: "Gym",
-  race: "Wettkampf",
-  brick: "Brick",
-  rest: "Ruhe",
-};
 
 export function WorkoutFeed({ workouts }: { workouts: WorkoutRow[] }) {
   return (
@@ -49,7 +40,7 @@ export function WorkoutFeed({ workouts }: { workouts: WorkoutRow[] }) {
               >
                 <div>
                   <p className="font-medium">
-                    {disciplineLabels[w.discipline] ?? w.discipline}
+                    {formatDisciplineLabel(w.discipline)}
                   </p>
                   <p className="text-xs text-muted-foreground">
                     {format(new Date(w.date), "EEEE, d. MMM", { locale: de })} ·{" "}

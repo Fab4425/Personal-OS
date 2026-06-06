@@ -97,12 +97,13 @@ export function IntegrationsPanel() {
       data.workoutErrors?.length > 0
         ? ` Fehler: ${data.workoutErrors.join("; ")}`
         : data.workoutsUpserted === 0 && data.activitiesFetched > 0
-          ? " (0 Workouts gespeichert — ggf. Migration phase2_sync ausführen)"
+          ? " (0 Workouts gespeichert — prüfe Sync-Meldung / Supabase-Migration)"
           : "";
     setMessage(
       `Garmin: ${data.workoutsUpserted} Workouts (${data.activitiesFetched} von Garmin), ${data.healthDaysUpserted} Gesundheitstage. Readiness: ${data.readiness?.overall_score ?? "—"}${errHint}`
     );
     loadStatus();
+    window.dispatchEvent(new CustomEvent("personal-os:garmin-synced"));
   }
 
   async function syncCalendar() {

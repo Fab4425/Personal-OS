@@ -1,6 +1,10 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
-import { syncPlannedWorkoutStatus } from "@/lib/training/plan-match";
+import {
+  findBestPlanForDate,
+  getTrainingPlanByWeekStart,
+} from "@/lib/training/plan-server";
+import { format } from "date-fns";
 
 export const dynamic = "force-dynamic";
 
@@ -17,6 +21,7 @@ export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const weekStart = searchParams.get("week_start");
   const listAll = searchParams.get("list") === "all";
+  const forToday = searchParams.get("for_today") === "1";
 
   if (listAll) {
     const { data: plans, error } = await supabase
@@ -30,42 +35,29 @@ export async function GET(request: Request) {
     return NextResponse.json({ plans: plans ?? [] });
   }
 
-  let planQuery = supabase
-    .from("training_plans")
-    .select("*")
-    .eq("user_id", user.id)
-    .order("week_start", { ascending: false });
+  let targetWeekStart = weekStart;
 
-  if (weekStart) {
-    planQuery = planQuery.eq("week_start", weekStart);
-  } else {
-    planQuery = planQuery.limit(1);
+  if (!targetWeekStart || forToday) {
+    const today = format(new Date(), "yyyy-MM-dd");
+    const plan = await findBestPlanForDate(supabase, user.id, today);
+    targetWeekStart = plan?.week_start ?? weekStart ?? null;
   }
 
-  const { data: plan, error: planError } = await planQuery.maybeSingle();
-
-  if (planError) {
-    return NextResponse.json({ error: planError.message }, { status: 500 });
+  if (!targetWeekStart) {
+    return NextResponse.json({
+      plan: null,
+      workouts: [],
+      completedActivities: [],
+    });
   }
 
-  if (!plan) {
-    return NextResponse.json({ plan: null, workouts: [] });
-  }
+  const result = await getTrainingPlanByWeekStart(
+    supabase,
+    user.id,
+    targetWeekStart
+  );
 
-  await syncPlannedWorkoutStatus(supabase, user.id, plan.id);
-
-  const { data: workouts, error: wError } = await supabase
-    .from("planned_workouts")
-    .select("*")
-    .eq("plan_id", plan.id)
-    .order("date")
-    .order("sort_order");
-
-  if (wError) {
-    return NextResponse.json({ error: wError.message }, { status: 500 });
-  }
-
-  return NextResponse.json({ plan, workouts: workouts ?? [] });
+  return NextResponse.json(result);
 }
 
 export async function DELETE(request: Request) {

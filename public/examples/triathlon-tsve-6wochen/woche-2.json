@@ -1,172 +1,64 @@
 {
   "version": 1,
-  "plan_name": "Woche 2 — Volumen steigern",
+  "plan_name": "Woche 2",
   "week_start": "2026-06-16",
   "focus": "Volumen leicht steigern, erste Brick-Einheit, Schwimmtempo",
-  "volume_total": "~6–7h",
+  "summary": {
+    "schwimmen": "2×",
+    "rad": "2×",
+    "laufen": "3×",
+    "kraft": "2×",
+    "gesamt": "~6–7h"
+  },
   "workouts": [
     {
       "day": "monday",
       "discipline": "swim",
-      "title": "Intervalle",
-      "duration_min": 40,
-      "target_tss": 42,
-      "structure": [
-        {
-          "type": "warmup",
-          "distance_m": 300,
-          "zone": "Z1"
-        },
-        {
-          "type": "interval",
-          "reps": 6,
-          "rep_distance_m": 100,
-          "pace_per_100m": "1:45",
-          "rest_s": 30,
-          "zone": "Z3–Z4"
-        },
-        {
-          "type": "cooldown",
-          "distance_m": 200,
-          "zone": "Z1"
-        }
-      ],
-      "notes": "1.400m gesamt."
+      "title": "Schwimmen",
+      "tags": ["Intervalle"],
+      "description": "1.400m: Warm-up 300m, 6×100m bei ~1:45/100m (30s Pause), Cool-down 200m."
     },
     {
       "day": "tuesday",
-      "discipline": "run",
-      "title": "Tempo + Beinkraft",
-      "duration_min": 30,
-      "target_tss": 45,
-      "structure": [
-        {
-          "type": "steady",
-          "distance_km": 5,
-          "zone": "Z4",
-          "pace_per_km": "4:20"
-        }
-      ],
-      "gym": {
-        "exercises": [
-          {
-            "name": "Kniebeugen",
-            "sets": 3,
-            "reps": 15
-          },
-          {
-            "name": "Wadenheben",
-            "sets": 3,
-            "reps": 20
-          },
-          {
-            "name": "Seitstütz",
-            "sets": 3,
-            "reps_or_duration": "30s"
-          }
-        ]
-      }
+      "discipline": "run+gym",
+      "title": "Laufen + Kraft",
+      "tags": ["Tempo", "Beine"],
+      "description": "5km Tempo ~4:20/km. Danach: Kniebeugen 3×15, Wadenheben 3×20, Seitstütz 3×30s."
     },
     {
       "day": "wednesday",
       "discipline": "bike",
-      "title": "Tempo",
-      "duration_min": 60,
-      "target_tss": 58,
-      "structure": [
-        {
-          "type": "interval",
-          "reps": 3,
-          "rep_duration_min": 8,
-          "zone": "Z4",
-          "description": "Renntempo"
-        },
-        {
-          "type": "recovery",
-          "reps": 3,
-          "rep_duration_min": 3,
-          "zone": "Z1"
-        }
-      ],
-      "notes": "60 min gesamt."
+      "title": "Rad",
+      "tags": ["Tempo"],
+      "description": "60 min, 3×8 min bei Renntempo mit 3 min locker dazwischen."
     },
     {
       "day": "thursday",
       "discipline": "run",
-      "title": "Zone 2 Erholung",
-      "duration_min": 35,
-      "target_tss": 28,
-      "structure": [
-        {
-          "type": "steady",
-          "duration_min": 35,
-          "zone": "Z2"
-        }
-      ],
-      "notes": "Bewusst langsam — Erholung vom Tempolauf Di."
+      "title": "Laufen",
+      "tags": ["Z2"],
+      "description": "35 min locker, Zone 2. Bewusst langsam — Erholung vom Tempolauf Di."
     },
     {
       "day": "friday",
       "discipline": "gym",
-      "title": "Vollkörper Kraft",
-      "duration_min": 45,
-      "target_tss": 20,
-      "structure": [],
-      "gym": {
-        "exercises": [
-          {
-            "name": "Klimmzüge"
-          },
-          {
-            "name": "Liegestütze"
-          },
-          {
-            "name": "Dips"
-          },
-          {
-            "name": "Plank"
-          },
-          {
-            "name": "Ausfallschritte"
-          },
-          {
-            "name": "Rumpfrotation"
-          }
-        ]
-      },
-      "notes": "Kein Cardio."
+      "title": "Kraft",
+      "tags": ["Vollkörper"],
+      "description": "Klimmzüge, Liegestütze, Dips, Plank, Ausfallschritte, Rumpfrotation. Kein Cardio."
     },
     {
       "day": "saturday",
       "discipline": "brick",
-      "title": "Brick Rad+Lauf",
-      "duration_min": 60,
-      "target_tss": 72,
-      "structure": [
-        {
-          "type": "bike",
-          "duration_min": 45,
-          "zone": "Z3–Z4",
-          "target_speed_kmh": 35
-        },
-        {
-          "type": "transition",
-          "description": "T1 — sofortiger Wechsel"
-        },
-        {
-          "type": "run",
-          "duration_min": 15,
-          "zone": "Z3",
-          "description": "Brick-Gefühl bewusst wahrnehmen"
-        }
-      ],
-      "notes": "Erste 3 min Brick-Gefühl bewusst wahrnehmen. Nicht erschrecken."
+      "title": "Brick",
+      "tags": ["Rad+Lauf"],
+      "description": "Rad 45 min (~35 km/h Ziel) → sofort 15 min Laufen. Erste 3 min Brick-Gefühl bewusst wahrnehmen. Nicht erschrecken."
     },
     {
       "day": "sunday",
       "discipline": "rest",
       "title": "Ruhe",
-      "notes": "Komplett frei. Brick-Einheiten sind fordernd."
+      "tags": ["Erholung"],
+      "description": "Komplett frei. Brick-Einheiten sind fordernd."
     }
   ]
 }
